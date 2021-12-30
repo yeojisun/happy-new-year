@@ -6,6 +6,7 @@ class App extends Component {
   render() {
     const db = firebase.firestore();
     db.settings({experimentalForceLongPolling: true, merge: true});
+    db.enablePersistence();
       var docRef = db.collection("happynewyear").doc("users");
       console.log(db);
       console.log(docRef.get());
