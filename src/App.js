@@ -9,7 +9,10 @@ class App extends Component {
       var docRef = db.collection("happynewyear").doc("users");
       console.log(db);
       console.log(docRef);
+      let data = db.collection("happynewyear").doc("users").get();
+      console.log(data);
       
+
 // docRef.get().then((doc) => {
 //     if (doc.exists) {
 //         console.log("Document data:", doc.data());
