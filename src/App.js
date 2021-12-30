@@ -14,7 +14,7 @@ class App extends Component {
          query.forEach(function(doc) {
            array.push(doc.data());
          });
-         this.setCol(array);
+         console.log(array);
        });
     console.log(db);
     return (
