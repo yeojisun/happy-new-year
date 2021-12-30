@@ -7,21 +7,14 @@ class App extends Component {
     const db = firebase.firestore();
     db.settings({experimentalForceLongPolling: true, merge: true});
 
-    db.collection('happynewyear').doc('users').get()
-      .then(snapshot => {
-        snapshot.forEach(doc => {
-          const data = doc.data();
-          console.log(doc.id, data);
-        });
-      })
-      .catch(err => {
-        console.log('Error getting documents', err);
+      db.collection("happynewyear").doc("users")
+      .onSnapshot((doc) => {
+          console.log("Current data: ", doc.data());
       });
-
 
     return (
       <div className="App">
-       <h1>Hello!! Firebase!!~</h1>
+       <h1>Hello!! Firebase!!1~</h1>
       </div>
     );
   }
