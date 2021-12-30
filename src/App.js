@@ -4,7 +4,8 @@ import firebase from './firebase';
 class App extends Component {
   
   render() {
-    const db = firebase.firestore();
+    const db = firebase.firestore().settings({ experimentalForceLongPolling: true });
+    
       var docRef = db.collection("happynewyear").doc("users");
 
 docRef.get().then((doc) => {
