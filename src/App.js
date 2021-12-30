@@ -5,7 +5,7 @@ class App extends Component {
   
   render() {
     const db = firebase.firestore();
-    db.settings({experimentalForceLongPolling: true});
+    db.settings({experimentalForceLongPolling: true, merge: true});
 
     db.collection('happynewyear').doc('users').get()
       .then(snapshot => {
