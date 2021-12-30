@@ -1,22 +1,21 @@
 import React, { Component } from 'react';
 import firebase from './firebase';
+import { collection, getDocs } from "firebase/firestore";
+
+const db = firebase.firestore();
+
+export const getNotes = async () => {
+  const notesSnapshot = await getDocs(collection(db, "happynewyear"));
+  const notesList = notesSnapshot.docs.map((doc) => doc.data());
+  console.log(notesList);
+  return notesList;
+};
 
 class App extends Component {
   
   render() {
-    const db = firebase.firestore();
-    db.settings({experimentalForceLongPolling: true, merge: true});
-
-      db.collection("happynewyear").doc("greeting_img").get().then((doc) => {
-        if (doc.exists) {
-            console.log("Document data:", doc.data());
-        } else {
-            // doc.data() will be undefined in this case
-            console.log("No such document!");
-        }
-    }).catch((error) => {
-        console.log("Error getting document:", error);
-    });
+   
+  getNotes();
 
     return (
       <div className="App">
