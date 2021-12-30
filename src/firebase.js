@@ -1,6 +1,5 @@
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/auth';
-import 'firebase/compat/firestore';
+import {initializeApp} from 'firebase/app'
+import { getFirestore } from "firebase/firestore"
 
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
@@ -14,4 +13,7 @@ const firebaseConfig = {
     // 인증키 
 };
 
-export default firebase.initializeApp(firebaseConfig);
+const firebaseApp = initializeApp(firebaseConfig);  //1차 정보 접근
+const database = getFirestore(firebaseApp);  //정보가 올바르면 아래 파이어스토어 접근
+
+export default database;
