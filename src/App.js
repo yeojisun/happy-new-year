@@ -7,17 +7,19 @@ class App extends Component {
     const db = firebase.firestore();
     db.settings({experimentalForceLongPolling: true});
       var docRef = db.collection("happynewyear").doc("users");
-
-docRef.get().then((doc) => {
-    if (doc.exists) {
-        console.log("Document data:", doc.data());
-    } else {
-        // doc.data() will be undefined in this case
-        console.log("No such document!");
-    }
-}).catch((error) => {
-    console.log("Error getting document:", error);
-});
+      console.log(db);
+      console.log(docRef);
+      
+// docRef.get().then((doc) => {
+//     if (doc.exists) {
+//         console.log("Document data:", doc.data());
+//     } else {
+//         // doc.data() will be undefined in this case
+//         console.log("No such document!");
+//     }
+// }).catch((error) => {
+//     console.log("Error getting document:", error);
+// });
 
     return (
       <div className="App">
