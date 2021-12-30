@@ -7,6 +7,13 @@ class App extends Component {
     const db = firebase.firestore();
     db.settings({experimentalForceLongPolling: true, merge: true});
 
+    const test = async () => {
+      await db
+        .collection('happynewyear')
+        .get();
+    };
+    console.log(test);
+
       db.collection("happynewyear").doc("users")
       .onSnapshot((doc) => {
           console.log("Current data: ", doc.data());
