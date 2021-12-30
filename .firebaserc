@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "happynewyear-2a527"
-  }
+    "default": "happynewyear-2a527",
+    "happynewyear": "happynewyear-2a527"
+  },
+  "targets": {}
 }
