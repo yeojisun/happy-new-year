@@ -13,7 +13,7 @@ function App() {
   };
   useEffect(() => {
     fetchUsers();
-  }, []);
+  }, );
   return (
     <div className="App">
       {
