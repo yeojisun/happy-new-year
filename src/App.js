@@ -9,9 +9,7 @@ class App extends Component {
       var docRef = db.collection("happynewyear").doc("users");
       console.log(db);
       console.log(docRef);
-      let data = db.collection("happynewyear").doc("users").get();
-      console.log(data);
-      
+      foo();
 
 // docRef.get().then((doc) => {
 //     if (doc.exists) {
@@ -31,5 +29,21 @@ class App extends Component {
     );
   }
 }
-
+async function foo() {
+  console.log("start")
+  const db = firebase.firestore();
+  db.settings({experimentalForceLongPolling: true});
+  var doc = db.collection("happynewyear").doc("users");
+  try {
+      var allCitiesSnapShot = await doc.get();
+      console.log(allCitiesSnapShot);
+      // allCitiesSnapShot.forEach(doc => {
+      //     console.log(doc.id, '=>', doc.data().name);
+      // });
+      console.log("end")
+  }
+  catch (err) {
+      console.log('Error getting documents', err);
+  }
+}
 export default App;
