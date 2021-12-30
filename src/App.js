@@ -1,33 +1,30 @@
+import React, { Component } from 'react';
 import firebase from './firebase';
-import React,{useState,useEffect} from 'react';
 
-function App() {
-  const [users,setUsers]=useState([]);
-  const db = firebase.firestore();
-  const fetchUsers=async()=>{
-    const response=db.collection('happynewyear');
-    const data=await response.get();
-    data.doc("users").forEach(item=>{
-      setUsers([...users,item.data()])
-    })
-  };
-  useEffect(() => {
-    fetchUsers();
-  }, );
-  return (
-    <div className="App">
-      {
-        users && users.map(user=>{
-          return(
-            <div className="blog-container">
-              <h4>{user.user_id}</h4>
-              <p>{user.user_pw}</p>
-            </div>
-          )
-        })
-      }
-    </div>
-  );
+class App extends Component {
+  
+  render() {
+    const db = firebase.firestore();
+    db.settings({experimentalForceLongPolling: true});
+
+    db.collection('happynewyear').doc('users').get()
+      .then(snapshot => {
+        snapshot.forEach(doc => {
+          const data = doc.data();
+          console.log(doc.id, data);
+        });
+      })
+      .catch(err => {
+        console.log('Error getting documents', err);
+      });
+
+
+    return (
+      <div className="App">
+       <h1>Hello!! Firebase!!~</h1>
+      </div>
+    );
+  }
 }
 
 export default App;
