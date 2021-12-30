@@ -5,18 +5,19 @@ class App extends Component {
   
   render() {
     const db = firebase.firestore();
-      var col = db.collection("happynewyear");
-       col.get()
-       .then( query => {
-         // var array = query.map(a => a.data());
-         // console.log(array);
-         var array = []
-         query.forEach(function(doc) {
-           array.push(doc.data());
-         });
-         console.log(array);
-       });
-    console.log(db);
+      var docRef = db.collection("happynewyear").doc("users");
+
+docRef.get().then((doc) => {
+    if (doc.exists) {
+        console.log("Document data:", doc.data());
+    } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+    }
+}).catch((error) => {
+    console.log("Error getting document:", error);
+});
+
     return (
       <div className="App">
        <h1>Hello!! Firebase!!~</h1>
