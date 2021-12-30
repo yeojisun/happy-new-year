@@ -1,34 +1,33 @@
-import React, { Component } from 'react';
 import firebase from './firebase';
+import React,{useState,useEffect} from 'react';
 
-class App extends Component {
-  
-  render() {
-
-     var getUserData = async () => {
-      var db = firebase.firestore();
-      db.settings({experimentalForceLongPolling: true, merge: true});
-      var docRef = db.collection("happynewyear").doc("users");
-      try {
-          var doc = await docRef.get();
-          if (doc.exists) {
-              console.log(doc.data()); //see below for doc object
-              return doc.data();
-          } else {
-              console.log("No such document!");
-          }
-      } catch (error) {
-          console.log("Error getting document:", error);
-      };
-    }
-      console.log(getUserData);
-
-    return (
-      <div className="App">
-       <h1>Hello!! Firebase!!~</h1>
-      </div>
-    );
-  }
+function App() {
+  const [users,setUsers]=useState([]);
+  const db = firebase.firestore();
+  const fetchUsers=async()=>{
+    const response=db.collection('happynewyear');
+    const data=await response.get();
+    data.doc("users").forEach(item=>{
+      setUsers([...users,item.data()])
+    })
+  };
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+  return (
+    <div className="App">
+      {
+        users && users.map(user=>{
+          return(
+            <div className="blog-container">
+              <h4>{user.user_id}</h4>
+              <p>{user.user_pw}</p>
+            </div>
+          )
+        })
+      }
+    </div>
+  );
 }
 
 export default App;
