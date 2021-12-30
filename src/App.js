@@ -5,12 +5,10 @@ class App extends Component {
   
   render() {
     const db = firebase.firestore();
-    db.settings({experimentalForceLongPolling: true});
+    db.settings({experimentalForceLongPolling: true, merge: true});
       var docRef = db.collection("happynewyear").doc("users");
       console.log(db);
-      console.log(docRef);
-      foo();
-
+      console.log(docRef.get());
 // docRef.get().then((doc) => {
 //     if (doc.exists) {
 //         console.log("Document data:", doc.data());
@@ -29,21 +27,5 @@ class App extends Component {
     );
   }
 }
-async function foo() {
-  console.log("start")
-  const db = firebase.firestore();
-  db.settings({experimentalForceLongPolling: true});
-  var doc = db.collection("happynewyear").doc("users");
-  try {
-      var allCitiesSnapShot = await doc.get();
-      console.log(allCitiesSnapShot);
-      // allCitiesSnapShot.forEach(doc => {
-      //     console.log(doc.id, '=>', doc.data().name);
-      // });
-      console.log("end")
-  }
-  catch (err) {
-      console.log('Error getting documents', err);
-  }
-}
+
 export default App;
