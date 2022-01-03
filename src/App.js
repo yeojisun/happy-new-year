@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import database from './firebase';
-import { collection, getDocs, query } from "firebase/firestore";
+import firebase from './firebase';
+import {getFirestore, collection, getDocs, query } from "firebase/firestore";
 
 // const db = firebase.firestore();
 
@@ -10,6 +10,8 @@ import { collection, getDocs, query } from "firebase/firestore";
 //   console.log(notesList);
 //   return notesList;
 // };
+
+const database = getFirestore(firebase);  //정보가 올바르면 아래 파이어스토어 접근
 const q = query(collection(database, "happynewyear"))
 getDocs(q).then( (querySnapshot)=>{
     querySnapshot.forEach((doc) => {
@@ -22,7 +24,6 @@ getDocs(q).then( (querySnapshot)=>{
 class App extends Component {
   
   render() {
-   
   //getNotes();
 
     return (
