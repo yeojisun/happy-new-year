@@ -28,7 +28,7 @@ class App extends Component {
 
     return (
       <div className="App">
-       <h1>Hello!! Firebase!!!!!~</h1>
+       <h1>Hello!! Firebase!</h1>
       </div>
     );
   }
