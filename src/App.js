@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import firebase from './firebase';
 import {getFirestore, collection, getDocs, query } from "firebase/firestore";
 
+import Button from '@mui/material/Button';
+
 // const db = firebase.firestore();
 
 // export const getNotes = async () => {
@@ -28,7 +30,7 @@ class App extends Component {
 
     return (
       <div className="App">
-       <h1>Hello!! Firebase!</h1>
+        <Button variant="contained">Hello World</Button>
       </div>
     );
   }
