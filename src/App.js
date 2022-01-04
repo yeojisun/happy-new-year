@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React from "react";
 import { BrowserRouter } from 'react-router-dom'; //추가할 부분
 import { Route, Routes } from 'react-router-dom';
 
@@ -9,7 +9,7 @@ import MainPage from './pages/MainPage';
 import firebase from './firebase';
 import { getFirestore, collection, getDocs, query } from "firebase/firestore";
 
-import Button from '@mui/material/Button';
+//import Button from '@mui/material/Button';
 
 // const db = firebase.firestore();
 
