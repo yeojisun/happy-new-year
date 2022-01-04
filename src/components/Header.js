@@ -8,7 +8,7 @@ function Header() {
                     <a href='/'>홈</a>
                 </li>
                 <li>
-                    <a href='/profile'>프로필</a>
+                    <a href='/profile'>프로필1</a>
                 </li>
             </ul>
         </header>);
