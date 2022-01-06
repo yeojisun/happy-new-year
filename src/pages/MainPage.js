@@ -1,14 +1,20 @@
 import React from 'react';
 import Header from '../components/Header';
 import Styled from "./Styled";
+import { Button } from '@mui/material';
+
 
 function MainPage() {
     return (
         <Styled>
-            <Header />
-
-            <div className="title">2022 <br /> 새해 덕담을 주고받아보아요</div>
-            <div>시작하기</div>
+            <div className='frame'>
+                <main className='main-frame'>
+                    <div className="title">2022 <br /> 새해 덕담을 주고받아보아요</div>
+                    <div className="button">
+                        <Button variant="contained">로그인 하기</Button>
+                    </div>
+                </main>
+            </div>
         </Styled>
     );
 }
