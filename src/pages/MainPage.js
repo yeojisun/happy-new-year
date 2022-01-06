@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '../components/Header';
+//import Header from '../components/Header';
 import Styled from "./Styled";
 import { Button } from '@mui/material';
 
