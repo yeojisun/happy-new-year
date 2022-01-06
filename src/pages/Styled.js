@@ -23,6 +23,7 @@ const Styled = styled.div`
 }
 .button{
     padding: 20px 0 100px 0; 
+
 }
 text-align:center;
 background-image: url("/assets/img/bg.jpg");

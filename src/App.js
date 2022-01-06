@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 
 import ProfilePage from './pages/ProfilePage';
 import MainPage from './pages/MainPage';
+import MemoList from './pages/Memo/List';
 
 
 import firebase from './firebase';
@@ -35,7 +36,11 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <Routes> <Route path='/' exact element={<MainPage />} /> <Route path='/profile' element={<ProfilePage />} /> </Routes>
+        <Routes>
+          <Route path='/' exact element={<MainPage />} />
+          <Route path='/profile' element={<ProfilePage />} />
+          <Route exact path='/memolist/:id' element={<MemoList />} />
+        </Routes>
       </BrowserRouter>
 
 
