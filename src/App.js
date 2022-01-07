@@ -6,10 +6,6 @@ import ProfilePage from './pages/ProfilePage';
 import MainPage from './pages/MainPage';
 import MemoList from './pages/Memo/List';
 
-
-import firebase from './firebase';
-import { getFirestore, collection, getDocs, query } from "firebase/firestore";
-
 //import Button from '@mui/material/Button';
 
 // const db = firebase.firestore();
@@ -21,15 +17,6 @@ import { getFirestore, collection, getDocs, query } from "firebase/firestore";
 //   return notesList;
 // };
 
-const database = getFirestore(firebase);  //정보가 올바르면 아래 파이어스토어 접근
-const q = query(collection(database, "happynewyear"))
-getDocs(q).then((querySnapshot) => {
-  querySnapshot.forEach((doc) => {
-    let data = doc.data();  //저장된 데이터
-    let id = doc.id;  //고유 아이디
-    console.log(data + ":" + id);
-  })
-})
 
 
 function App() {

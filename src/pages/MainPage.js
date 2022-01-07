@@ -4,10 +4,23 @@ import Styled from "./Styled";
 import { Button } from '@mui/material';
 import { Link } from "react-router-dom";
 
+import firebase from '../firebase';
+import { getFirestore, collection, addDoc, serverTimestamp } from "firebase/firestore";
+
+const database = getFirestore(firebase);  //정보가 올바르면 아래 파이어스토어 접근
 
 function MainPage() {
 
     const clickHandler = () => {
+
+        // Add a new document in collection "cities"
+        addDoc(collection(database, "users/SUE3vmEn1CixjZiBBxZZ/greetings"), {
+            grt_contents: "testetstsdsf1de",
+            grt_date: serverTimestamp(),
+            grt_img: "i_01",
+            grt_title: "test11",
+            grt_user_id: "1111"
+        });
 
     }
     return (
