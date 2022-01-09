@@ -31,6 +31,8 @@ const AuthCallback = () => {
       history("/profile");
     } catch (err) {
       console.log(err);
+      alert("error: login access token");
+      history("/");
     }
   };
   useEffect(() => {
