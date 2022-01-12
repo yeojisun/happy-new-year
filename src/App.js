@@ -4,7 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 
 import ProfilePage from './pages/ProfilePage';
 import MainPage from './pages/MainPage';
-
+import AuthCallback from './pages/authCallback';
 
 import firebase from './firebase';
 import { getFirestore, collection, getDocs, query } from "firebase/firestore";
@@ -35,7 +35,11 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <Routes> <Route path='/' exact element={<MainPage />} /> <Route path='/profile' element={<ProfilePage />} /> </Routes>
+        <Routes>
+          <Route path='/' exact element={<MainPage />} />
+          <Route path='/profile' element={<ProfilePage />} />
+          <Route path='/oauth/callback' element={<AuthCallback />} />
+        </Routes>
       </BrowserRouter>
 
 
