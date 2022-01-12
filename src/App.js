@@ -2,7 +2,6 @@ import React from "react";
 import { BrowserRouter } from 'react-router-dom'; //추가할 부분
 import { Route, Routes } from 'react-router-dom';
 
-import ProfilePage from './pages/ProfilePage';
 import MainPage from './pages/MainPage';
 import AuthCallback from './pages/authCallback';
 
@@ -37,7 +36,6 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' exact element={<MainPage />} />
-          <Route path='/profile' element={<ProfilePage />} />
           <Route path='/oauth/callback' element={<AuthCallback />} />
         </Routes>
       </BrowserRouter>

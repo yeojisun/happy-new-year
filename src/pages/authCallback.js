@@ -18,7 +18,7 @@ const AuthCallback = () => {
         client_id: REST_API_KEY,
         redirect_uri: REDIRECT_URI,
         code: code,
-        client_secret: CLIENT_SECRET,
+        client_secret: CLIENT_SECRET
       });
       try {
         // access token 가져오기
@@ -26,11 +26,12 @@ const AuthCallback = () => {
           "https://kauth.kakao.com/oauth/token",
           payload
         );
+        //console.log(res);
         // Kakao Javascript SDK 초기화
         window.Kakao.init(REST_API_KEY);
         // access token 설정
         window.Kakao.Auth.setAccessToken(res.data.access_token);
-        history("/profile");
+        history("/"); //Todo: 리스트로 이동시켜야 함?
       } catch (err) {
         console.log(err);
         alert("error: login access token");
