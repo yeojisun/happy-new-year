@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
 const Styled = styled.div`
+.frame{
+    height:100vh;
+}
 .main-frame{
     min-height: 100%;
     max-width: 600px;
@@ -10,10 +13,11 @@ const Styled = styled.div`
     display: flex; 
     -- text-align:center;
     justify-content: center; 
-    padding: 20px 0 20px 0; 
-    margin-bottom: 500px; 
+    padding: 200px 0 20px 0; 
     font-family: 'ChosunGs';
-    font-size: 40px;
+    font-size: 30px;
+    color:#FFFFFF;
+    text-shadow: 2px 2px 10px red;
      }
      @font-face {
     font-family: 'ChosunGs';
@@ -22,12 +26,13 @@ const Styled = styled.div`
     font-style: normal;
 }
 .button{
-    padding: 20px 0 100px 0; 
+    padding: 35vh 0 30vh 0; 
+
 }
 text-align:center;
-background-image: url("/assets/img/bg.jpg");
-background-size: 600px 800px;
-background-repeat: no-repeat ;
+background-image: url("/assets/img/main_bg.png");
+background-size: 400px;
+-- background-repeat: no-repeat ;
 background-position: top center; 
 width:100vw;
 min-height:100%;
