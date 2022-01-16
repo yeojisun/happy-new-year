@@ -1,11 +1,16 @@
 import React from "react";
-import { useEffect } from "react";
+import { useState } from "react";
+// import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Auth = () => {
+const Auth = (props) => {
+    const [user_id, setUserId] = useState();
+    const [nickName, setNickName] = useState();
+
     const history = useNavigate();
+
+    // 로그인
     const REST_API_KEY = "60907393ed75205b0f734690841d8219";
-    // 로그인 URL
     const REDIRECT_URI = "http://localhost:3000/oauth/callback";
     const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
     
@@ -14,40 +19,34 @@ const Auth = () => {
         if (!window.Kakao.Auth.getAccessToken()) {
             console.log('Not logged in.');
             history("/");
-            // return;
           }
           window.Kakao.Auth.logout(function() {
             console.log(window.Kakao.Auth.getAccessToken());
           });
     }
     
-    // 회원정보 가져오기
-    let user_id = "tetst";
-    let nickName = "11";
-    useEffect(() => {
+    // useEffect(() => {
+        // 회원정보 가져오기
         const getProfile = async () => {
             try {
                 // Kakao SDK API를 이용해 사용자 정보 획득
                 let data = await window.Kakao.API.request({
                     url: "/v2/user/me",
                 });
-                console.log("profile>> ", data.id);
-                console.log("profile>> ", data.properties.nickname);
+                setUserId(data.id);
+                setNickName(data.properties.nickname);
 
-                //Todo: set 못하는중..
-                // user_id = data.id;
-                // nickName = data.properties.nickname;
+                // list 이동
+                history(`/memolist/${data.id}`);
 
-                return data;
             } catch (err) {
                 console.log(err);
                 alert("error: 로그인 조회");
-                // history("/");
             }
         };
-        getProfile();
-    }, []);
-
+        // getProfile();
+    // }, []);
+    
     if (!window.Kakao.Auth || !window.Kakao.Auth.getAccessToken()) {
         return (
             <h1>
@@ -57,6 +56,8 @@ const Auth = () => {
             </h1>
         );
     } else {
+        getProfile();
+
         return (
             <div>
                 <h2>{user_id}</h2>
