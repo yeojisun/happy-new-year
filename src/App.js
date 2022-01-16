@@ -1,12 +1,12 @@
 import React from "react";
-import { BrowserRouter } from 'react-router-dom'; //추가할 부분
-import { Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom'; //추가할 부분
+// import { Route, Routes } from 'react-router-dom';
 
 import MainPage from './pages/MainPage';
 import AuthCallback from './pages/authCallback';
 
-import firebase from './firebase';
-import { getFirestore, collection, getDocs, query } from "firebase/firestore";
+// import firebase from './firebase';
+// import { getFirestore, collection, getDocs, query } from "firebase/firestore";
 import MemoList from './pages/Memo/List';
 
 //import Button from '@mui/material/Button';
@@ -19,8 +19,6 @@ import MemoList from './pages/Memo/List';
 //   console.log(notesList);
 //   return notesList;
 // };
-
-
 
 function App() {
   return (
