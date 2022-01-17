@@ -2,13 +2,13 @@ import React from 'react';
 //import Header from '../components/Header';
 import Styled from "./Styled";
 //import { Button } from '@mui/material';
-import Auth from "./auth";
 import { Link } from 'react-router-dom';
+import Auth from "./auth";
+
 import firebase from '../firebase';
 import { getFirestore, collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 const database = getFirestore(firebase);  //정보가 올바르면 아래 파이어스토어 접근
-
 
 function MainPage() {
 
