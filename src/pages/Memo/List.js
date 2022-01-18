@@ -38,6 +38,7 @@ function List() {
         , speed: 500
         , slidesPerRow: 3
         , rows: 3
+		, arrows: false
     };
 
 
@@ -46,7 +47,7 @@ function List() {
 
     
   const [open, setOpen] = React.useState(false);
-  const [selectedValue, setSelectedValue] = React.useState("test");
+  const [selectedValue, setSelectedValue] = React.useState({});
 
   const handleClickOpen = (value) => {
     setOpen(true);
@@ -55,18 +56,20 @@ function List() {
 
   const handleClose = (value) => {
     setOpen(false);
-    setSelectedValue(value);
+    // setSelectedValue(value);
   };
 
     return (
         <>
+        <Styled>
+            <div className='frame'>
+                <main className='main-frame'>
             <div>{id}님의 덕담보따리</div>
-            <Styled>
                 <Slider {...settings}>
                     {
                         cards.map(c => {
                             return (
-                                <Card key={c.id} onClick={()=>{handleClickOpen(c.grt_title)}}>
+                                <Card key={c.id} onClick={()=>{handleClickOpen(c)}}>
                                     <CardActionArea>
                                         <CardContent className="card_content" sx={{backgroundImage: `url('/assets/img/${c.grt_img}.jpg')`}}>
                                             <Typography gutterBottom variant="h5" component="div">
@@ -85,8 +88,10 @@ function List() {
                         })
                     }
                 </Slider>
+        
+      </main>
+      </div>
             </Styled>
-
 
             <View
         selectedValue={selectedValue}

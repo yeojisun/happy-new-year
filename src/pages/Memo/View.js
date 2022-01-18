@@ -1,4 +1,5 @@
-import {DialogTitle, Dialog, Button} from '@mui/material';
+import {DialogTitle,DialogContent, Dialog, Button} from '@mui/material';
+import * as common from '../../CommonFunction';
 import PropTypes from 'prop-types';
 
 function View(props) {
@@ -13,9 +14,15 @@ function View(props) {
     };
   
     return (
-      <Dialog onClose={handleClose} open={open}>
-        <DialogTitle>{selectedValue}</DialogTitle>
-        <Button onClick={()=> handleItemClick()}>꺼벌여</Button>
+      <Dialog onClose={handleClose} open={open} PaperProps={{
+        style: {
+          backgroundImage:`url("/assets/img/${selectedValue.grt_img}.jpg")`,  
+        },
+      }}>
+      <DialogTitle>{selectedValue.grt_title}</DialogTitle>
+        <DialogContent>{selectedValue.grt_contents}</DialogContent>
+        <DialogContent>{selectedValue.grt_date !== null ? common.timestamp(selectedValue.grt_date.toDate()) : null} {selectedValue.grt_user_id}로부터</DialogContent>
+        <Button onClick={()=> handleItemClick()}>닫기</Button>
       </Dialog>
     );
 
@@ -27,5 +34,4 @@ export default View;
 View.propTypes = {
   onClose: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
-  selectedValue: PropTypes.string.isRequired,
 };
