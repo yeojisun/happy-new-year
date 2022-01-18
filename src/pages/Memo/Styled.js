@@ -2,6 +2,14 @@ import styled from "styled-components";
 
 const Styled = styled.div`
 
+.frame{
+    height:100vh;
+}
+.main-frame{
+    min-height: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
 .slick-next:before, .slick-prev:before {
     color: #000;
 }
