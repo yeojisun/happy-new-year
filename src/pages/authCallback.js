@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const AuthCallback = () => {
   const REST_API_KEY = "60907393ed75205b0f734690841d8219";
-  const REDIRECT_URI = "http://localhost:3000/oauth/callback";
+  const REDIRECT_URI = `${process.env.REACT_APP_URL}/oauth/callback`;
   const CLIENT_SECRET = "Nn9719qjn4vLQx1NYXEcXdSWkOa0H2K0";
   const history = useNavigate();
   useEffect(() => {
