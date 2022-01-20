@@ -22,12 +22,12 @@ function List() {
         const q = query(collection(database, "users/SUE3vmEn1CixjZiBBxZZ/greetings"), orderBy("grt_date"))
         getDocs(q).then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
-                setCard(cards => [...cards, {...doc.data(), id: doc.id}]);
+                setCard(cards => [...cards, { ...doc.data(), id: doc.id }]);
 
             })
         })
     }
-    
+
     useEffect(() => {
         fetchCard();
     }, []);
@@ -38,66 +38,60 @@ function List() {
         , speed: 500
         , slidesPerRow: 3
         , rows: 3
-		, arrows: false
+        , arrows: false
+
     };
 
 
 
     const { id } = useParams();
 
-    
-  const [open, setOpen] = React.useState(false);
-  const [selectedValue, setSelectedValue] = React.useState({});
 
-  const handleClickOpen = (value) => {
-    setOpen(true);
-    setSelectedValue(value);
-  };
+    const [open, setOpen] = React.useState(false);
+    const [selectedValue, setSelectedValue] = React.useState({});
 
-  const handleClose = (value) => {
-    setOpen(false);
-    // setSelectedValue(value);
-  };
+    const handleClickOpen = (value) => {
+        setOpen(true);
+        setSelectedValue(value);
+    };
+
+    const handleClose = (value) => {
+        setOpen(false);
+        // setSelectedValue(value);
+    };
 
     return (
         <>
-        <Styled>
-            <div className='frame'>
-                <main className='main-frame'>
-            <div>{id}님의 덕담보따리</div>
-                <Slider {...settings}>
-                    {
-                        cards.map(c => {
-                            return (
-                                <Card key={c.id} onClick={()=>{handleClickOpen(c)}}>
-                                    <CardActionArea>
-                                        <CardContent className="card_content" sx={{backgroundImage: `url('/assets/img/${c.grt_img}.jpg')`}}>
-                                            <Typography gutterBottom variant="h5" component="div">
-                                                {c.grt_title}
-                                            </Typography>
-                                            <Typography variant="body2" color="text.secondary">
-                                                {c.grt_contents}
-                                            </Typography>
-                                            <Typography variant="caption" color="text.secondary">
-                                                {c.grt_date !== null ? common.timestamp(c.grt_date.toDate()) : null}
-                                            </Typography>
-                                        </CardContent>
-                                    </CardActionArea>
-                                </Card>
-                            )
-                        })
-                    }
-                </Slider>
-        
-      </main>
-      </div>
+            <Styled>
+                <div className='frame'>
+                    <main className='main-frame'>
+                        <div className="list_title"><img src="/assets/img/sub_title.png" width="300px" /></div>
+                        <div className="user_title">{id}님의 덕담보따리</div>
+                        <Slider {...settings}>
+                            {// <Card key={c.id} onClick={() => { handleClickOpen(c) }}>
+
+                                cards.map(c => {
+                                    return (
+                                        <div key={c.id} className="list-item" style={{ width: 80 }} onClick={() => { handleClickOpen(c) }}>
+                                            <img src="/assets/img/bottari.png" style={{ width: 80, height: 100 }} />
+                                            §{c.grt_user_id}로부터§
+                                        </div>
+
+
+                                    )
+                                })
+                            }
+                        </Slider>
+
+                    </main>
+                </div>
             </Styled>
 
             <View
-        selectedValue={selectedValue}
-        open={open}
-        onClose={handleClose}
-      />
+                selectedValue={selectedValue}
+                open={open}
+                onClose={handleClose}
+            />
         </>
     );
 }
