@@ -65,7 +65,7 @@ function List() {
             <Styled>
                 <div className='frame'>
                     <main className='main-frame'>
-                        <div className="list_title"><img src="/assets/img/sub_title.png" width="300px" /></div>
+                        <div className="list_title"><img src="/assets/img/sub_title.png" width="350px" /></div>
                         <div className="user_title">{id}님의 덕담보따리</div>
                         <Slider {...settings}>
                             {// <Card key={c.id} onClick={() => { handleClickOpen(c) }}>
@@ -82,7 +82,10 @@ function List() {
                                 })
                             }
                         </Slider>
-
+                        <div>
+                            <a class='button red'>Sign In</a>
+                        </div>
+                        
                     </main>
                 </div>
             </Styled>
