@@ -1,11 +1,11 @@
-import { useParams, useLocation  } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
 
 import firebase from '../../firebase';
-import * as common from '../../CommonFunction';
+// import * as common from '../../CommonFunction';
 import { getFirestore, collection, query, orderBy, getDocs } from "firebase/firestore";
 
-import { CardActionArea, Typography, CardContent, Card } from '@mui/material';
+// import { CardActionArea, Typography, CardContent, Card } from '@mui/material';
 
 import Slider from "react-slick";
 
@@ -17,14 +17,14 @@ import "slick-carousel/slick/slick-theme.css";
 
 function List() {
     // 사용자 정보
-    const { id } = useParams();
+    // const { id } = useParams();
     const nickName = useLocation().state.nickName;
     // 덕담 정보
     const [cards, setCard] = useState([]);
     const fetchCard = async () => {
         const database = getFirestore(firebase);  //정보가 올바르면 아래 파이어스토어 접근
         const q = query(collection(database, "users/SUE3vmEn1CixjZiBBxZZ/greetings"), orderBy("grt_date"))
-        // const q = query(collection(database, `users/${id}/greetings`), orderBy("grt_date"));
+        //const q = query(collection(database, `users/${id}/greetings`), orderBy("grt_date"));
         getDocs(q).then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
                 setCard(cards => [...cards, { ...doc.data(), id: doc.id }]);
@@ -67,14 +67,6 @@ function List() {
         
         setOpen(true);
         setSelectedValue(value);
-
-        // return (
-        //     <View
-        //     selectedValue={selectedValue}
-        //     open={open}
-        //     onClose={handleClose}
-        // />
-        // );
     };
     // close dialog
     const handleClose = (value) => {
@@ -98,7 +90,7 @@ function List() {
                             cards.map(c => {
                                 return (
                                     <div key={c.id} className="list-item" style={{ width: 80 }} onClick={() => { handleClickOpen(c) }}>
-                                        <img src="/assets/img/bottari.png" style={{ width: 80, height: 100 }} />
+                                        <img src="/assets/img/bottari.png" style={{ width: 80, height: 100 }} alt="borrari" />
                                         §{c.grt_user_id}로부터§
                                     </div>
 
