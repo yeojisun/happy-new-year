@@ -1,7 +1,40 @@
 import styled from "styled-components";
 
 const Styled = styled.div`
-
+.button {
+    display: inline-block;
+    color: #fff;
+    text-shadow: 0 0 2px rgba(0,0,0,.3);
+    font-family: sans-serif;
+    box-shadow:
+        inset 0 0 2px 0 rgba(255,255,255,.4),
+        inset 0 0 3px 0 rgba(0,0,0,.4),
+        inset 0 0 3px 5px rgba(0,0,0,.05),
+        2px 2px 4px 0 rgba(0,0,0,.25);
+    border-radius: 4px;
+    padding: 8px 16px;;
+    font-size: 12px;
+    line-height: 14px;
+    position: relative;
+}
+a:hover {
+    cursor:pointer;
+   }
+.button.red { background: #EA3D33; }
+.button:before {
+    top: 0;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    background: rgba(255,255,255,.6);
+    box-shadow: 0 1px 2px 0 rgba(255,255,255,.6);
+}
+.button:after {
+    bottom: 0;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    background: rgba(0,0,0,.15);
+    box-shadow: 0 -1px 2px 0 rgba(0,0,0,.15);
+}
 .frame{
     height:100vh;
 }
