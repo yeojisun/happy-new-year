@@ -13,21 +13,38 @@ function View(props) {
     onClose(value);
   };
 
-  return (
-    <Dialog onClose={handleClose} open={open} PaperProps={{
-      style: {
-        backgroundImage: `url("/assets/img/${selectedValue.grt_img}.jpg")`,
-        width: "30%",
-        height: "100%"
-      },
-    }}>
-      <DialogTitle>{selectedValue.grt_title}</DialogTitle>
-      <DialogContent>{selectedValue.grt_contents}</DialogContent>
-      <DialogContent>{selectedValue.grt_date !== null ? selectedValue.grt_date && common.timestamp(selectedValue.grt_date.toDate()) : null} {selectedValue.grt_user_id}로부터</DialogContent>
-      <Button onClick={() => handleItemClick()}>닫기</Button>
-    </Dialog>
-  );
+  if(selectedValue != null && "VIEW" !== selectedValue.type) {
+    return (
+      <Dialog onClose={handleClose} open={open} PaperProps={{
+        style: {
+          backgroundImage: `url("/assets/img/${selectedValue.grt_img}.jpg")`,
+          width: "30%",
+          height: "100%"
+        },
+      }}>
+        <DialogTitle>{selectedValue.grt_title}</DialogTitle>
+        <DialogContent>{selectedValue.grt_contents}</DialogContent>
+        <DialogContent>{selectedValue.grt_date !== null ? selectedValue.grt_date && common.timestamp(selectedValue.grt_date.toDate()) : null} {selectedValue.grt_user_id}로부터</DialogContent>
+        <Button onClick={() => handleItemClick()}>닫기</Button>
+      </Dialog>
+    );
 
+  } else {
+    return (
+      <Dialog onClose={handleClose} open={open} PaperProps={{
+        style: {
+          backgroundImage: `url("/assets/img/${selectedValue.grt_img}.jpg")`,
+          width: "30%",
+          height: "100%"
+        },
+      }}>
+        <DialogTitle>{selectedValue.grt_title}</DialogTitle>
+        <DialogContent>{selectedValue.grt_contents}</DialogContent>
+        <DialogContent>{selectedValue.grt_date !== null ? selectedValue.grt_date && common.timestamp(selectedValue.grt_date.toDate()) : null} {selectedValue.grt_user_id}로부터</DialogContent>
+        <Button onClick={() => handleItemClick()}>닫기</Button>
+      </Dialog>
+    );
+  }
 
 }
 
