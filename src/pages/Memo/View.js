@@ -1,28 +1,31 @@
-import {DialogTitle,DialogContent, Dialog, Button} from '@mui/material';
+import { DialogTitle, DialogContent, Dialog, Button } from '@mui/material';
 import * as common from '../../CommonFunction';
 import PropTypes from 'prop-types';
 
 function View(props) {
   const { onClose, selectedValue, open } = props;
+
   const handleClose = () => {
     onClose(selectedValue);
   };
-  
+
   const handleItemClick = (value) => {
     onClose(value);
   };
-  
-  if(selectedValue != null && "NEW" !== selectedValue.type) {
+
+  if(selectedValue != null && "VIEW" !== selectedValue.type) {
     return (
       <Dialog onClose={handleClose} open={open} PaperProps={{
         style: {
-          backgroundImage:`url("/assets/img/${selectedValue.grt_img}.jpg")`,  
+          backgroundImage: `url("/assets/img/${selectedValue.grt_img}.jpg")`,
+          width: "30%",
+          height: "100%"
         },
       }}>
-        <DialogTitle>{selectedValue.type}</DialogTitle>
-        {/* <DialogContent>{selectedValue.grt_contents}</DialogContent>
-        <DialogContent>{selectedValue.grt_date !== null ? common.timestamp(selectedValue.grt_date.toDate()) : null} {selectedValue.grt_user_id}로부터</DialogContent> */}
-        <Button onClick={()=> handleItemClick()}>닫기</Button>
+        <DialogTitle>{selectedValue.grt_title}</DialogTitle>
+        <DialogContent>{selectedValue.grt_contents}</DialogContent>
+        <DialogContent>{selectedValue.grt_date !== null ? selectedValue.grt_date && common.timestamp(selectedValue.grt_date.toDate()) : null} {selectedValue.grt_user_id}로부터</DialogContent>
+        <Button onClick={() => handleItemClick()}>닫기</Button>
       </Dialog>
     );
 
@@ -30,14 +33,19 @@ function View(props) {
     return (
       <Dialog onClose={handleClose} open={open} PaperProps={{
         style: {
-          backgroundImage:`url("/assets/img/${selectedValue.grt_img}.jpg")`,  
+          backgroundImage: `url("/assets/img/${selectedValue.grt_img}.jpg")`,
+          width: "30%",
+          height: "100%"
         },
       }}>
-        <DialogTitle>{selectedValue.type}</DialogTitle>
-        <Button onClick={()=> handleItemClick()}>닫기</Button>
+        <DialogTitle>{selectedValue.grt_title}</DialogTitle>
+        <DialogContent>{selectedValue.grt_contents}</DialogContent>
+        <DialogContent>{selectedValue.grt_date !== null ? selectedValue.grt_date && common.timestamp(selectedValue.grt_date.toDate()) : null} {selectedValue.grt_user_id}로부터</DialogContent>
+        <Button onClick={() => handleItemClick()}>닫기</Button>
       </Dialog>
     );
   }
+
 }
 
 export default View;

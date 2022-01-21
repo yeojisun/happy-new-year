@@ -21,18 +21,18 @@ function List() {
     const nickName = useLocation().state.nickName;
     // 덕담 정보
     const [cards, setCard] = useState([]);
-
     const fetchCard = async () => {
         const database = getFirestore(firebase);  //정보가 올바르면 아래 파이어스토어 접근
         const q = query(collection(database, "users/SUE3vmEn1CixjZiBBxZZ/greetings"), orderBy("grt_date"))
         // const q = query(collection(database, `users/${id}/greetings`), orderBy("grt_date"));
         getDocs(q).then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
-                setCard(cards => [...cards, {...doc.data(), id: doc.id}]);
+                setCard(cards => [...cards, { ...doc.data(), id: doc.id }]);
+
             })
         })
     }
-    
+
     useEffect(() => {
         fetchCard();
         console.log("card>> ", cards);
@@ -44,7 +44,8 @@ function List() {
         , speed: 500
         , slidesPerRow: 3
         , rows: 3
-		, arrows: false
+        , arrows: false
+
     };
     
     // dialog state
@@ -92,30 +93,16 @@ function List() {
                     </div>
                 
                     <Slider {...settings}>
-                        {
-                            cards.map(c => {
-                                c.type = "VIEW";
+                        {// <Card key={c.id} onClick={() => { handleClickOpen(c) }}>
 
+                            cards.map(c => {
                                 return (
-                                    <Card
-                                        key={c} 
-                                        onClick={() => handleClickOpen(c)} // TODO: 클릭 없이 페이지 랜더링 후 onclick 실행되는 문제 있음
-                                    >
-                                        <CardActionArea>
-                                            <CardContent className="card_content" sx={{backgroundImage: `url('/assets/img/${c.grt_img}.jpg')`}}>
-                                                <Typography gutterBottom variant="h5" component="div">
-                                                    {c.grt_title}
-                                                </Typography>
-                                                <Typography variant="body2" color="text.secondary">
-                                                    {c.grt_contents}
-                                                </Typography>
-                                                <Typography variant="caption" color="text.secondary">
-                                                    {c.grt_date !== null ? common.timestamp(c.grt_date.toDate()) : null}
-                                                </Typography>
-                                            </CardContent>
-                                        </CardActionArea>
-                                    </Card>
-                                );
+                                    <div key={c.id} className="list-item" style={{ width: 80 }} onClick={() => { handleClickOpen(c) }}>
+                                        <img src="/assets/img/bottari.png" style={{ width: 80, height: 100 }} />
+                                        §{c.grt_user_id}로부터§
+                                    </div>
+
+                                )
                             })
                         }
                     </Slider>
@@ -131,4 +118,5 @@ function List() {
     </>
     );
 }
+
 export default List;
