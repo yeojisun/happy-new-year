@@ -68,13 +68,7 @@ function List() {
                         <div class="user-wrap">
                             <div class="user-image"><img src="/assets/img/sub_card.png" alt="" /></div>
                             <div class="user-text">
-                                <div class="user-text-table">
-                                    <div class="user-text-table-row">
-                                        <div class="user-text-table-cell">
-                                            <p>{id}님의 덕담보따리</p>
-                                        </div>
-                                    </div>
-                                </div>
+                                <p>{id}님의 덕담보따리</p>
                             </div>
                         </div>
                         <Slider {...settings}>

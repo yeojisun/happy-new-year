@@ -61,39 +61,28 @@ a:hover {
     padding-top:30px;
     padding-bottom:10px;
 }
+
 .user-wrap {
-    width: 100%;
-    margin: 0px auto;
-    position: relative;
+	width: 100%;
+	margin: 10px auto;
+	position: relative;
 }
 .user-wrap img {
-    width: 100%;
-    vertical-align: middle;
+	width: 100%;
+	vertical-align: middle;
 }
 .user-text {
-    position: absolute;
-    top: 0px;
-    width: 100%;
-    height: 100%;
-}
-.user-text-table {
-    display: table;
-    width: 100%;
-    height: 100%;
-}
-.user-text-table-row {
-    display: table-row;
-}
-.user-text-table-cell {
-    display: table-cell;
-}
-.user-text p {
     font-size: 20px;
     font-family: 'ypseo';
     text-align:center;
-    padding: 15px;
-    text-align: center;
+	position: absolute;
+	top: 40%;
+	left: 50%;
+	width: 100%;
+	transform: translate( -50%, -50% );
 }
+
+
 @font-face {
     font-family: 'ypseo';
     src: url('/assets/font/ypseo.woff') format('woff');
