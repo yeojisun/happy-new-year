@@ -2,10 +2,7 @@ import { useParams } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
 
 import firebase from '../../firebase';
-import * as common from '../../CommonFunction';
 import { getFirestore, collection, query, orderBy, getDocs } from "firebase/firestore";
-
-import { CardActionArea, Typography, CardContent, Card } from '@mui/material';
 
 import Slider from "react-slick";
 
@@ -65,7 +62,7 @@ function List() {
             <Styled>
                 <div className='frame'>
                     <main className='main-frame'>
-                        <div className="list_title"><img src="/assets/img/sub_title.png" width="350px" /></div>
+                        <div className="list_title"><img src="/assets/img/sub_title.png" width="350px" alt="" /></div>
                         {/* <div className="user_title">
                             <div className="user_text">{id}님의 덕담보따리</div></div> */}
                         <div class="user-wrap">
@@ -86,7 +83,7 @@ function List() {
                                 cards.map(c => {
                                     return (
                                         <div key={c.id} className="list-item" style={{ width: 80 }} onClick={() => { handleClickOpen(c) }}>
-                                            <img src="/assets/img/bottari.png" style={{ width: 80, height: 100 }} />
+                                            <img src="/assets/img/bottari.png" style={{ width: 80, height: 100 }} alt="" />
                                             §{c.grt_user_id}로부터§
                                         </div>
                                     )
@@ -94,7 +91,7 @@ function List() {
                             }
                         </Slider>
                         <div className='div_button'>
-                            <a className='button red'>덕담 남기기</a>
+                            <a className='button red' href="/">덕담 남기기</a>
                         </div>
 
                     </main>
