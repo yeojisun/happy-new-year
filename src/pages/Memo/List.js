@@ -66,7 +66,20 @@ function List() {
                 <div className='frame'>
                     <main className='main-frame'>
                         <div className="list_title"><img src="/assets/img/sub_title.png" width="350px" /></div>
-                        <div className="user_title">{id}님의 덕담보따리</div>
+                        {/* <div className="user_title">
+                            <div className="user_text">{id}님의 덕담보따리</div></div> */}
+                        <div class="user-wrap">
+                            <div class="user-image"><img src="/assets/img/sub_card.png" alt="" /></div>
+                            <div class="user-text">
+                                <div class="user-text-table">
+                                    <div class="user-text-table-row">
+                                        <div class="user-text-table-cell">
+                                            <p>{id}님의 덕담보따리</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <Slider {...settings}>
                             {// <Card key={c.id} onClick={() => { handleClickOpen(c) }}>
 
@@ -76,16 +89,14 @@ function List() {
                                             <img src="/assets/img/bottari.png" style={{ width: 80, height: 100 }} />
                                             §{c.grt_user_id}로부터§
                                         </div>
-
-
                                     )
                                 })
                             }
                         </Slider>
-                        <div>
-                            <a class='button red'>Sign In</a>
+                        <div className='div_button'>
+                            <a className='button red'>덕담 남기기</a>
                         </div>
-                        
+
                     </main>
                 </div>
             </Styled>

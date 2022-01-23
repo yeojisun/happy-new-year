@@ -1,6 +1,11 @@
 import styled from "styled-components";
 
 const Styled = styled.div`
+.div_button{
+    position: relative;
+    padding: 40px;
+    text-align: center;
+}
 .button {
     display: inline-block;
     color: #fff;
@@ -12,7 +17,7 @@ const Styled = styled.div`
         inset 0 0 3px 5px rgba(0,0,0,.05),
         2px 2px 4px 0 rgba(0,0,0,.25);
     border-radius: 4px;
-    padding: 8px 16px;;
+    padding: 8px 16px;
     font-size: 12px;
     line-height: 14px;
     position: relative;
@@ -56,15 +61,39 @@ a:hover {
     padding-top:30px;
     padding-bottom:10px;
 }
-.user_title{
+.user-wrap {
+    width: 100%;
+    margin: 0px auto;
+    position: relative;
+}
+.user-wrap img {
+    width: 100%;
+    vertical-align: middle;
+}
+.user-text {
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+}
+.user-text-table {
+    display: table;
+    width: 100%;
+    height: 100%;
+}
+.user-text-table-row {
+    display: table-row;
+}
+.user-text-table-cell {
+    display: table-cell;
+}
+.user-text p {
     font-size: 20px;
     font-family: 'ypseo';
     text-align:center;
-    padding-top:30px;
-    padding-bottom:10px;
-    background-image: url("/assets/img/sub_card.png");  background-size: 350px;
-    background-repeat: no-repeat;
- }   
+    padding: 15px;
+    text-align: center;
+}
 @font-face {
     font-family: 'ypseo';
     src: url('/assets/font/ypseo.woff') format('woff');
