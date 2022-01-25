@@ -39,9 +39,10 @@ const AuthCallback = () => {
       }
     };
     getToken();
-  }, [REDIRECT_URI, history]);
-  
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [history]);
+
   return null;
- };
+};
 
 export default AuthCallback;
