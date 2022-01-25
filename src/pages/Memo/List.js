@@ -33,7 +33,7 @@ function List() {
     useEffect(() => {
         fetchCard();
         console.log("card>> ", cards);
-    }, );
+    }, []);
 
     const settings = {
         dots: true
@@ -44,24 +44,24 @@ function List() {
         , arrows: false
 
     };
-    
+
     // dialog state
     const [open, setOpen] = React.useState(false);
     const [selectedValue, setSelectedValue] = React.useState({});
-    
+
     // open dialog
     const handleClickOpen = (value, e) => {
         console.log("dialog value>> ", value);
-        if(value != null && "NEW" === value.type) {
+        if (value != null && "NEW" === value.type) {
             // 등록 View
             console.log("등록");
-        
+
         } else {
             // 상세 View
             console.log("상세");
-        
+
         }
-        
+
         setOpen(true);
         setSelectedValue(value);
     };
