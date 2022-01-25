@@ -1,5 +1,4 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
 
 import firebase from '../../firebase';
@@ -15,26 +14,25 @@ import "slick-carousel/slick/slick-theme.css";
 
 function List() {
     // 사용자 정보
-    // const { id } = useParams();
+    const { id } = useParams();
     const nickName = useLocation().state.nickName;
     // 덕담 정보
     const [cards, setCard] = useState([]);
-    const fetchCard = async () => {
-        const database = getFirestore(firebase);  //정보가 올바르면 아래 파이어스토어 접근
-        const q = query(collection(database, "users/SUE3vmEn1CixjZiBBxZZ/greetings"), orderBy("grt_date"))
-        //const q = query(collection(database, `users/${id}/greetings`), orderBy("grt_date"));
-        getDocs(q).then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                setCard(cards => [...cards, { ...doc.data(), id: doc.id }]);
-
-            })
-        })
-    }
-
+    
     useEffect(() => {
+        const fetchCard = async () => {
+            const database = getFirestore(firebase);  //정보가 올바르면 아래 파이어스토어 접근
+            // const q = query(collection(database, "users/SUE3vmEn1CixjZiBBxZZ/greetings"), orderBy("grt_date"))
+            const q = query(collection(database, `users/${id}/greetings`), orderBy("grt_date"));
+            getDocs(q).then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    setCard(cards => [...cards, { ...doc.data(), id: doc.id }]);
+    
+                })
+            })
+        }
         fetchCard();
-        console.log("card>> ", cards);
-    }, []);
+    }, [id]);
 
     const settings = {
         dots: true
@@ -99,8 +97,9 @@ function List() {
                                 })
                             }
                         </Slider>
-                        <div className='div_button'>
-                            <a className='button red' href="/">덕담 남기기</a>
+                        <div className='div_button' onClick={() => { handleClickOpen() }}>
+                            덕담 남기기
+                            {/* <a className='button red' href="/">덕담 남기기</a> */}
                         </div>
 
                     </main>
