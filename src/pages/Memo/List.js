@@ -33,7 +33,7 @@ function List() {
     useEffect(() => {
         fetchCard();
         console.log("card>> ", cards);
-    }, []);
+    }, );
 
     const settings = {
         dots: true
