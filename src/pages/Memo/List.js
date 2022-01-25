@@ -18,21 +18,21 @@ function List() {
     const nickName = useLocation().state.nickName;
     // 덕담 정보
     const [cards, setCard] = useState([]);
-    const fetchCard = async () => {
-        const database = getFirestore(firebase);  //정보가 올바르면 아래 파이어스토어 접근
-        // const q = query(collection(database, "users/SUE3vmEn1CixjZiBBxZZ/greetings"), orderBy("grt_date"))
-        const q = query(collection(database, `users/${id}/greetings`), orderBy("grt_date"));
-        getDocs(q).then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                setCard(cards => [...cards, { ...doc.data(), id: doc.id }]);
-
-            })
-        })
-    }
-
+    
     useEffect(() => {
+        const fetchCard = async () => {
+            const database = getFirestore(firebase);  //정보가 올바르면 아래 파이어스토어 접근
+            // const q = query(collection(database, "users/SUE3vmEn1CixjZiBBxZZ/greetings"), orderBy("grt_date"))
+            const q = query(collection(database, `users/${id}/greetings`), orderBy("grt_date"));
+            getDocs(q).then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    setCard(cards => [...cards, { ...doc.data(), id: doc.id }]);
+    
+                })
+            })
+        }
         fetchCard();
-    }, []);
+    }, [id]);
 
     const settings = {
         dots: true
@@ -97,8 +97,9 @@ function List() {
                                 })
                             }
                         </Slider>
-                        <div className='div_button'>
-                            <a className='button red' href="/">덕담 남기기</a>
+                        <div className='div_button' onClick={() => { handleClickOpen() }}>
+                            덕담 남기기
+                            {/* <a className='button red' href="/">덕담 남기기</a> */}
                         </div>
 
                     </main>
