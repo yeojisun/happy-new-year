@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 import { useLocation, useParams } from "react-router-dom";
+=======
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useLocation } from "react-router-dom";
+>>>>>>> master
 import React, { useState, useEffect } from 'react';
 
 import firebase from '../../firebase';
