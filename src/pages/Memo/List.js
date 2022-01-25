@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
 
 import firebase from '../../firebase';
@@ -13,10 +13,15 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 function List() {
+    // 사용자 정보
+    // const { id } = useParams();
+    const nickName = useLocation().state.nickName;
+    // 덕담 정보
     const [cards, setCard] = useState([]);
     const fetchCard = async () => {
         const database = getFirestore(firebase);  //정보가 올바르면 아래 파이어스토어 접근
         const q = query(collection(database, "users/SUE3vmEn1CixjZiBBxZZ/greetings"), orderBy("grt_date"))
+        //const q = query(collection(database, `users/${id}/greetings`), orderBy("grt_date"));
         getDocs(q).then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
                 setCard(cards => [...cards, { ...doc.data(), id: doc.id }]);
@@ -27,6 +32,7 @@ function List() {
 
     useEffect(() => {
         fetchCard();
+        console.log("card>> ", cards);
     }, []);
 
     const settings = {
@@ -38,20 +44,28 @@ function List() {
         , arrows: false
 
     };
-
-
-
-    const { id } = useParams();
-
-
+    
+    // dialog state
     const [open, setOpen] = React.useState(false);
     const [selectedValue, setSelectedValue] = React.useState({});
-
-    const handleClickOpen = (value) => {
+    
+    // open dialog
+    const handleClickOpen = (value, e) => {
+        console.log("dialog value>> ", value);
+        if(value != null && "NEW" === value.type) {
+            // 등록 View
+            console.log("등록");
+        
+        } else {
+            // 상세 View
+            console.log("상세");
+        
+        }
+        
         setOpen(true);
         setSelectedValue(value);
     };
-
+    // close dialog
     const handleClose = (value) => {
         setOpen(false);
         // setSelectedValue(value);
@@ -68,7 +82,7 @@ function List() {
                         <div class="user-wrap">
                             <div class="user-image"><img src="/assets/img/sub_card.png" alt="" /></div>
                             <div class="user-text">
-                                <p>{id}님의 덕담보따리</p>
+                                <p>{nickName}님의 덕담보따리</p>
                             </div>
                         </div>
                         <Slider {...settings}>
@@ -100,4 +114,5 @@ function List() {
         </>
     );
 }
+
 export default List;
