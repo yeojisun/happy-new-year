@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import firebase from '../../firebase';
-import { getFirestore, ref, set, collection, query, orderBy, getDocs, terminate } from "firebase/firestore";
-import { useParams } from "react-router-dom";
+// import firebase from '../../firebase';
+// import { getFirestore, ref, set, collection, query, orderBy, getDocs, terminate } from "firebase/firestore";
+// import { useParams } from "react-router-dom";
 import { isEmpty } from '@firebase/util';
 
 const InsertForm = (props) => {
@@ -12,7 +12,7 @@ const InsertForm = (props) => {
     };
 
     // id
-    const { id } = useParams();
+    // const { id } = useParams();
 
     // 등록
     const actInsert = (e) => {

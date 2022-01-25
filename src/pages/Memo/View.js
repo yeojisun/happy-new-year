@@ -4,7 +4,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import * as common from '../../CommonFunction';
 
 import PropTypes from 'prop-types';
-import InsertForm from "./InsertForm";
+// import InsertForm from "./InsertForm";
 
 import Styled from "./ViewStyled";
 function View(props) {
@@ -19,6 +19,7 @@ function View(props) {
   };
 
 if(selectedValue != null && "VIEW" !== selectedValue.type) {
+  // 등록
   return (
     <Styled onClose={handleClose} open={open}
       PaperProps={{
@@ -32,13 +33,14 @@ if(selectedValue != null && "VIEW" !== selectedValue.type) {
           height: "100vh"
         },
       }}>
-      <DialogTitle>{selectedValue.grt_title}  <IconButton aria-label="close" id="btn_close" onClick={() => handleItemClick()}><CloseIcon />
-      </IconButton></DialogTitle>
-      <DialogContent>{selectedValue.grt_contents}</DialogContent>
-      <DialogContent id="dcnt_from">{selectedValue.grt_date !== null ? selectedValue.grt_date && common.timestamp(selectedValue.grt_date.toDate()) : null} {selectedValue.grt_user_id}로부터</DialogContent>
+      {/* <DialogTitle>{selectedValue.grt_title}  <IconButton aria-label="close" id="btn_close" onClick={() => handleItemClick()}><CloseIcon />
+      </IconButton></DialogTitle> */}
+      {/* <DialogContent>{selectedValue.grt_contents}</DialogContent>
+      <DialogContent id="dcnt_from">{selectedValue.grt_date !== null ? selectedValue.grt_date && common.timestamp(selectedValue.grt_date.toDate()) : null} {selectedValue.grt_user_id}로부터</DialogContent> */}
     </Styled>
   );
   } else {
+    // 상세화면
     return (
       <Styled onClose={handleClose} open={open}
         PaperProps={{
@@ -52,8 +54,10 @@ if(selectedValue != null && "VIEW" !== selectedValue.type) {
             height: "100vh"
           },
         }}>
-        <DialogTitle><IconButton aria-label="close" id="btn_close" onClick={() => handleItemClick()}><CloseIcon />
-        </IconButton></DialogTitle>
+        <DialogTitle>{selectedValue.grt_title}  <IconButton aria-label="close" id="btn_close" onClick={() => handleItemClick()}><CloseIcon />
+      </IconButton></DialogTitle>
+      <DialogContent>{selectedValue.grt_contents}</DialogContent>
+      <DialogContent id="dcnt_from">{selectedValue.grt_date !== null ? selectedValue.grt_date && common.timestamp(selectedValue.grt_date.toDate()) : null} {selectedValue.grt_user_id}로부터</DialogContent>
       </Styled>
     );
   }
