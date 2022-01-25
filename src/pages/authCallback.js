@@ -39,7 +39,7 @@ const AuthCallback = () => {
       }
     };
     getToken();
-  }, [history]);
+  }, [REDIRECT_URI, history]);
   
   return null;
  };

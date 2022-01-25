@@ -2,10 +2,7 @@ import { useLocation, useParams } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
 
 import firebase from '../../firebase';
-// import * as common from '../../CommonFunction';
 import { getFirestore, collection, query, orderBy, getDocs } from "firebase/firestore";
-
-// import { CardActionArea, Typography, CardContent, Card } from '@mui/material';
 
 import Slider from "react-slick";
 
@@ -46,24 +43,24 @@ function List() {
         , arrows: false
 
     };
-    
+
     // dialog state
     const [open, setOpen] = React.useState(false);
     const [selectedValue, setSelectedValue] = React.useState({});
-    
+
     // open dialog
     const handleClickOpen = (value, e) => {
         console.log("dialog value>> ", value);
-        if(value != null && "NEW" === value.type) {
+        if (value != null && "NEW" === value.type) {
             // 등록 View
             console.log("등록");
-        
+
         } else {
             // 상세 View
             console.log("상세");
-        
+
         }
-        
+
         setOpen(true);
         setSelectedValue(value);
     };
@@ -75,38 +72,45 @@ function List() {
 
     return (
         <>
-        <Styled>
-            <div className='frame'>
-                <main className='main-frame'>
-                    <div>{nickName}님의 덕담보따리</div>
-                    <div>
-                        <button onClick={() => handleClickOpen({type : 'NEW'})}>등록</button>
-                    </div>
-                
-                    <Slider {...settings}>
-                        {// <Card key={c.id} onClick={() => { handleClickOpen(c) }}>
+            <Styled>
+                <div className='frame'>
+                    <main className='main-frame'>
+                        <div className="list_title"><img src="/assets/img/sub_title.png" width="350px" alt="" /></div>
+                        {/* <div className="user_title">
+                            <div className="user_text">{id}님의 덕담보따리</div></div> */}
+                        <div class="user-wrap">
+                            <div class="user-image"><img src="/assets/img/sub_card.png" alt="" /></div>
+                            <div class="user-text">
+                                <p>{nickName}님의 덕담보따리</p>
+                            </div>
+                        </div>
+                        <Slider {...settings}>
+                            {// <Card key={c.id} onClick={() => { handleClickOpen(c) }}>
 
-                            cards.map(c => {
-                                return (
-                                    <div key={c.id} className="list-item" style={{ width: 80 }} onClick={() => { handleClickOpen(c) }}>
-                                        <img src="/assets/img/bottari.png" style={{ width: 80, height: 100 }} alt="borrari" />
-                                        §{c.grt_user_id}로부터§
-                                    </div>
+                                cards.map(c => {
+                                    return (
+                                        <div key={c.id} className="list-item" style={{ width: 80 }} onClick={() => { handleClickOpen(c) }}>
+                                            <img src="/assets/img/bottari.png" style={{ width: 80, height: 100 }} alt="" />
+                                            §{c.grt_user_id}로부터§
+                                        </div>
+                                    )
+                                })
+                            }
+                        </Slider>
+                        <div className='div_button'>
+                            <a className='button red' href="/">덕담 남기기</a>
+                        </div>
 
-                                )
-                            })
-                        }
-                    </Slider>
-                </main>
-            </div>
-        </Styled>
-        
-        <View
-            selectedValue={selectedValue}
-            open={open}
-            onClose={handleClose}
-        />
-    </>
+                    </main>
+                </div>
+            </Styled>
+
+            <View
+                selectedValue={selectedValue}
+                open={open}
+                onClose={handleClose}
+            />
+        </>
     );
 }
 
