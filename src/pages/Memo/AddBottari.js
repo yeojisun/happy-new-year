@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 // import { useParams } from "react-router-dom";
 import { isEmpty } from '@firebase/util';
 
-const InsertForm = (props) => {
+const AddBottari = (props) => {
     // 본문 영역
     const [contents, setContents] = useState("");
     const handleChangeContnets = (e) => {
@@ -43,4 +43,4 @@ const InsertForm = (props) => {
     );
 }
 
-export default InsertForm;
+export default AddBottari;
