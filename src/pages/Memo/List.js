@@ -1,13 +1,14 @@
 import { useLocation, useParams } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
-
-import firebase from '../../firebase';
 import { getFirestore, collection, query, orderBy, getDocs } from "firebase/firestore";
 
-import Slider from "react-slick";
 
+import Slider from "react-slick";
 import Styled from "./Styled";
-import View from "./View";
+
+import firebase from '../../firebase';
+import ViewBottari from "./ViewBottari";
+import AddBottari from "./AddBottari";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -16,57 +17,57 @@ function List() {
     // 사용자 정보
     const { id } = useParams();
     const nickName = useLocation().state.nickName;
+
     // 덕담 정보
-    const [cards, setCard] = useState([]);
+    const [bottari, setBottari] = useState([]);
     
     useEffect(() => {
-        const fetchCard = async () => {
-            const database = getFirestore(firebase);  //정보가 올바르면 아래 파이어스토어 접근
-            // const q = query(collection(database, "users/SUE3vmEn1CixjZiBBxZZ/greetings"), orderBy("grt_date"))
+        const fetchBottari = async () => {
+            const database = getFirestore(firebase); // firestore 접근
             const q = query(collection(database, `users/${id}/greetings`), orderBy("grt_date"));
             getDocs(q).then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
-                    setCard(cards => [...cards, { ...doc.data(), id: doc.id }]);
-    
+                    setBottari(bottari => [...bottari, { ...doc.data(), id: doc.id }]);
                 })
             })
         }
-        fetchCard();
+        fetchBottari();
     }, [id]);
 
-    const settings = {
+    const slickSettings = {
         dots: true
         , infinite: false
         , speed: 500
         , slidesPerRow: 3
         , rows: 3
         , arrows: false
-
     };
 
     // dialog state
-    const [open, setOpen] = React.useState(false);
+    const [viewopen, setViewOpen] = React.useState(false);
+    const [addopen, setAddOpen] = React.useState(false);
     const [selectedValue, setSelectedValue] = React.useState({});
 
     // open dialog
-    const handleClickOpen = (value, e) => {
-        console.log("dialog value>> ", value);
-        if (value != null && "NEW" === value.type) {
+    const handleClickOpen = (pValue, pType, e) => {
+        // console.log("dialog value>> ", value);
+        if (pType === "NEW") { 
             // 등록 View
             console.log("등록");
+
+            setAddOpen(true);
 
         } else {
             // 상세 View
             console.log("상세");
 
+            setViewOpen(true);
+            setSelectedValue(pValue);
         }
-
-        setOpen(true);
-        setSelectedValue(value);
     };
     // close dialog
     const handleClose = (value) => {
-        setOpen(false);
+        setViewOpen(false);
         // setSelectedValue(value);
     };
 
@@ -78,18 +79,18 @@ function List() {
                         <div className="list_title"><img src="/assets/img/sub_title.png" width="350px" alt="" /></div>
                         {/* <div className="user_title">
                             <div className="user_text">{id}님의 덕담보따리</div></div> */}
-                        <div class="user-wrap">
-                            <div class="user-image"><img src="/assets/img/sub_card.png" alt="" /></div>
-                            <div class="user-text">
+                        <div className="user-wrap">
+                            <div className="user-image"><img src="/assets/img/sub_card.png" alt="" /></div>
+                            <div className="user-text">
                                 <p>{nickName}님의 덕담보따리</p>
                             </div>
                         </div>
-                        <Slider {...settings}>
-                            {// <Card key={c.id} onClick={() => { handleClickOpen(c) }}>
+                        <Slider {...slickSettings}>
+                            {
 
-                                cards.map(c => {
+                        bottari.map(c => {
                                     return (
-                                        <div key={c.id} className="list-item" style={{ width: 80 }} onClick={() => { handleClickOpen(c) }}>
+                                        <div key={c.id} className="list-item" style={{ width: 80 }} onClick={() => { handleClickOpen(c, "VIEW") }}>
                                             <img src="/assets/img/bottari.png" style={{ width: 80, height: 100 }} alt="" />
                                             §{c.grt_user_id}로부터§
                                         </div>
@@ -97,18 +98,22 @@ function List() {
                                 })
                             }
                         </Slider>
-                        <div className='div_button' onClick={() => { handleClickOpen() }}>
-                            덕담 남기기
-                            {/* <a className='button red' href="/">덕담 남기기</a> */}
+                        <div className='div_button'>
+                            <div className='button red' onClick={() => { handleClickOpen(null, "NEW") }}>덕담 남기기</div>
                         </div>
 
                     </main>
                 </div>
             </Styled>
 
-            <View
+            <ViewBottari
                 selectedValue={selectedValue}
-                open={open}
+                open={viewopen}
+                onClose={handleClose}
+            />
+            <AddBottari
+                selectedValue={selectedValue}
+                open={addopen}
                 onClose={handleClose}
             />
         </>
