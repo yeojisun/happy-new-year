@@ -1,7 +1,6 @@
 
 import { DialogTitle, TextField, IconButton, Button } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import * as common from '../../CommonFunction';
 
 import { getFirestore, collection, addDoc, serverTimestamp } from "firebase/firestore";
 import PropTypes from 'prop-types';
