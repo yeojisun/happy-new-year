@@ -30,7 +30,7 @@ function List() {
     const database = getFirestore(firebase); // firestore 접근
     const docRef = doc(database, 'users', id);
     const getNickName = async () => {
-        
+
         const docSnap = await getDoc(docRef);
         setNickName(docSnap.data().user_name);
         setNickLoading(false);
@@ -47,9 +47,9 @@ function List() {
     }
     useEffect(() => {
         getNickName();
-        
+
         fetchBottari();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id]);
 
     const slickSettings = {
@@ -69,7 +69,7 @@ function List() {
     // open dialog
     const handleClickOpen = (pValue, pType, e) => {
         // console.log("dialog value>> ", value);
-        if (pType === "NEW") { 
+        if (pType === "NEW") {
             // 등록 View
             console.log("등록");
             setAddOpen(true);
@@ -107,23 +107,28 @@ function List() {
                         <Slider {...slickSettings}>
                             {
 
-                        bottari.map(c => {
+                                bottari.map(c => {
                                     return (
-                                        <div key={c.id} className="list-item" style={{ width: 80 }} onClick={() => { handleClickOpen(c, "VIEW") }}>
+                                        <div key={c.id} className="bottari-list" style={{ width: 80 }} onClick={() => {
+                                            if (chkLogin)
+                                                handleClickOpen(c, "VIEW");
+                                            else
+                                                console.log('클릭않되요');
+                                        }}>
                                             <img src="/assets/img/bottari.png" style={{ width: 80, height: 100 }} alt="" />
-                                            §{c.grt_from}로부터§
+                                            <p className="bottari-text">§{c.grt_from}로부터§</p>
                                         </div>
                                     )
                                 })
                             }
                         </Slider>
                         <Fade in={!chkLogin}>
-                        <div className='div_button'>
-                            <div className='button red' onClick={() => { handleClickOpen(null, "NEW") }}>덕담 남기기</div>
-                        </div>
+                            <div className='div_button'>
+                                <div className='button red' onClick={() => { handleClickOpen(null, "NEW") }}>덕담 남기기</div>
+                            </div>
                         </Fade>
                         <Progress isFade={isBotLoading || isNickLoading} />
-                       
+
                     </main>
                 </div>
             </Styled>
@@ -132,7 +137,7 @@ function List() {
                 open={viewopen}
                 onClose={handleViewClose}
             />
-           <AddBottari
+            <AddBottari
                 selectedValue={selectedValue}
                 open={addopen}
                 user_id={id}
