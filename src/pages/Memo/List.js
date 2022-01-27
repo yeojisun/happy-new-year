@@ -1,6 +1,6 @@
 import { useLocation, useParams } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
-import { getFirestore, collection, query, orderBy, getDocs } from "firebase/firestore";
+import { getFirestore, collection, query, orderBy, getDocs, getDoc, doc } from "firebase/firestore";
 
 
 import Slider from "react-slick";
@@ -16,14 +16,21 @@ import "slick-carousel/slick/slick-theme.css";
 function List() {
     // 사용자 정보
     const { id } = useParams();
-    const nickName = useLocation().state.nickName;
+    //const nickName = useLocation().state.nickName;
 
     // 덕담 정보
     const [bottari, setBottari] = useState([]);
-    
+    const [nickName, setNickName] = useState();
+    const database = getFirestore(firebase); // firestore 접근
+    const docRef = doc(database, 'users', id);
+    const getNickName = async () => {
+        
+        const docSnap = await getDoc(docRef);
+        setNickName(docSnap.data().user_name);
+    }
     useEffect(() => {
+        getNickName();
         const fetchBottari = async () => {
-            const database = getFirestore(firebase); // firestore 접근
             const q = query(collection(database, `users/${id}/greetings`), orderBy("grt_date"));
             getDocs(q).then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
@@ -32,6 +39,7 @@ function List() {
             })
         }
         fetchBottari();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id]);
 
     const slickSettings = {
