@@ -91,7 +91,18 @@ function List() {
         setAddOpen(false);
         // setSelectedValue(value);
     };
+    const linkCopy = () => {
 
+        var url = '';
+        var textarea = document.createElement("textarea");
+        document.body.appendChild(textarea);
+        url = window.document.location.href;
+        textarea.value = url;
+        textarea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textarea);
+        alert("URL이 복사되었습니다.")
+    }
     return (
         <>
             <Styled>
@@ -122,11 +133,11 @@ function List() {
                                 })
                             }
                         </Slider>
-                        <Fade in={!chkLogin}>
-                            <div className='div_button'>
-                                <div className='button red' onClick={() => { handleClickOpen(null, "NEW") }}>덕담 남기기</div>
-                            </div>
-                        </Fade>
+                        <div className='div_button'>
+                            {chkLogin ?
+                                <div className='button yellow' onClick={() => { linkCopy() }}>링크 공유하기</div>
+                                : <div className='button red' onClick={() => { handleClickOpen(null, "NEW") }}>덕담 남기기</div>}
+                        </div>
                         <Progress isFade={isBotLoading || isNickLoading} />
 
                     </main>
