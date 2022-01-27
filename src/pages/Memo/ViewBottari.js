@@ -36,7 +36,7 @@ function ViewBottari(props) {
         <DialogTitle>{selectedValue.grt_title}  <IconButton aria-label="close" id="btn_close" onClick={() => handleItemClick()}><CloseIcon />
       </IconButton></DialogTitle>
       <DialogContent>{selectedValue.grt_contents}</DialogContent>
-      <DialogContent id="dcnt_from">{selectedValue.grt_date !== null ? selectedValue.grt_date && common.timestamp(selectedValue.grt_date.toDate()) : null} {selectedValue.grt_user_id}로부터</DialogContent>
+      <DialogContent id="dcnt_from">{selectedValue.grt_date !== null ? selectedValue.grt_date && common.timestamp(selectedValue.grt_date.toDate()) : null} {selectedValue.grt_from}로부터</DialogContent>
       </Styled>
     );
   }

@@ -1,7 +1,7 @@
 import React from "react";
 // import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getFirestore, collection, query, where, getDocs, addDoc, setDoc, doc } from "firebase/firestore";
+import { getFirestore, collection, query, where, getDocs, setDoc, doc } from "firebase/firestore";
 import firebase from '../firebase';
 
 const Auth = (props) => {
@@ -40,8 +40,8 @@ const Auth = (props) => {
 
                 // list 이동
                 
-                //history(`/memolist/${data.id}`, {state : {nickName: data.properties.nickname}});
-                history(`/memolist/${data.id}`, );
+                //history(`/memolist/${data.id}`);
+                history(`/memolist/${data.id}`, {state : {chkLogin: true}});
 
             } catch (err) {
                 console.log(err);
