@@ -21,6 +21,7 @@ const Styled = styled.div`
     font-size: 12px;
     line-height: 14px;
     position: relative;
+    cursor:pointer;
 }
 a:hover {
     cursor:pointer;
@@ -51,11 +52,17 @@ a:hover {
 .slick-next:before, .slick-prev:before {
     color: #000;
 }
-.list-item img{
+.bottari-list img{
     
   height: calc(50vh - 100px);
   width: auto;
   margin: 0 auto; /* it centers any block level element */
+  cursor:pointer;
+}
+.bottari-list p{
+    
+  width: 100%;
+  text-align:center;
 }
 .list_title{
     padding-top:30px;
