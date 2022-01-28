@@ -1,6 +1,7 @@
 
 import { DialogTitle, TextField, IconButton, Button } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+import React, { useState } from 'react';
 
 import { getFirestore, collection, addDoc, serverTimestamp } from "firebase/firestore";
 import PropTypes from 'prop-types';
@@ -11,20 +12,33 @@ import Styled from "./ViewStyled";
 function AddBottari(props) {
   const { onClose, selectedValue, open, user_id } = props;
 
+  const [grt_from, setGrt_from] = useState("")
+  const [grt_title, setGrt_title] = useState("")
+  const [grt_contents, setGrt_contents] = useState("")
   const handleClose = () => {
     onClose(selectedValue);
   };
 
-  const addBott = (value) =>{
-      
+  const addBott = (e) =>{
+    e.preventDefault();
+    
+    console.log("?");
     const database = getFirestore(firebase);
     addDoc(collection(database, `users/${user_id}/greetings`), {
-                grt_contents: "테스트입니다123",
+                grt_contents: grt_contents,
                 grt_date: serverTimestamp(),
                 grt_img: "i_02",
-                grt_title: "테스트",
-                grt_from: "누구게"
+                grt_title: grt_title,
+                grt_from: grt_from
+            }).then((res) => {
+              console.log(res);
+              alert("등록완료");
+              
             });
+            setGrt_title("");
+            setGrt_contents("");
+            setGrt_from("");
+            
   };
 
   const handleItemClick = (value) => {
@@ -45,13 +59,13 @@ function AddBottari(props) {
         }}>
         <DialogTitle><IconButton aria-label="close" id="btn_close" onClick={() => handleItemClick()}><CloseIcon />
       </IconButton></DialogTitle>
-      <form action="/" method="POST" onSubmit={(e) => { e.preventDefault(); alert('Submitted form!'); this.handleClose(); } }>
-          <TextField name="grt_from" hintText="from" />
-          <TextField name="grt_title" hintText="title" />
-          <TextField name="grt_conten ts" hintText="Content" />
-          <div style={{ textAlign: 'right', padding: 8, margin: '24px -24px -24px -24px' }}>
-          <Button onClick={() => addBott()}>추가하기</Button>
-          </div>
+        <form onSubmit={addBott}>
+            <TextField name="grt_from" value={grt_from}  onChange={e => setGrt_from(e.target.value)} />
+            <TextField name="grt_title" value={grt_title}  onChange={e => setGrt_title(e.target.value)} />
+            <TextField name="grt_contents" value={grt_contents} onChange={e => setGrt_contents(e.target.value)} />
+            <div style={{ textAlign: 'right', padding: 8, margin: '24px -24px -24px -24px' }}>
+            <Button type="submit">추가하기</Button>
+            </div>
         </form>
       </Styled>
     );
