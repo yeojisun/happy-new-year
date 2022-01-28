@@ -1,4 +1,4 @@
-import { DialogTitle, TextField, IconButton, Button } from '@mui/material';
+import { DialogTitle, DialogContent, TextField, TextareaAutosize, IconButton, Button } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import React, { useState } from 'react';
 
@@ -7,17 +7,28 @@ import PropTypes from 'prop-types';
 import firebase from '../../firebase';
 
 import Styled from "./ViewStyled";
+// import { positions, textAlign } from '@mui/system';
+
 function AddBottari(props) {
   const { onClose, selectedValue, open, user_id } = props;
 
-  const [grt_from, setGrt_from] = useState("")
-  const [grt_title, setGrt_title] = useState("")
-  const [grt_contents, setGrt_contents] = useState("")
+  const [grt_from, setGrt_from] = useState("");
+  const [grt_title, setGrt_title] = useState("");
+  const [grt_contents, setGrt_contents] = useState("");
+
+  const [i_img, setI_Img] = useState(1);
   
+  // 모달 닫기
   const handleClose = () => {
     onClose(selectedValue);
   };
 
+  // 배경 이미지 변경
+  const changeImg = (num) => {
+    setI_Img(num);
+  };
+
+  // 등록 실행
   const addBott = (e) =>{
     e.preventDefault();
     
@@ -27,7 +38,7 @@ function AddBottari(props) {
       addDoc(collection(database, `users/${user_id}/greetings`), {
                 grt_contents: grt_contents,
                 grt_date: serverTimestamp(),
-                grt_img: "i_02",
+                grt_img: `i_0${i_img}`,
                 grt_title: grt_title,
                 grt_from: grt_from
             }).then((res) => {
@@ -40,45 +51,71 @@ function AddBottari(props) {
   
               handleClose(); // modal close
             });
-    } catch(e) {
-      alert("error: 등록 실패");
-      console.log(e);
-  }
-};
+      } catch(e) {
+        alert("error: 등록 실패");
+        console.log(e);
+    }
+  };
 
-// const handleItemClick = (value) => {
-//   onClose(value);
-// };
+  // 등록화면
+  return (
+    <Styled onClose={handleClose} open={open}
+    PaperProps={{
+      style: {
+        backgroundImage: `url("/assets/img/i_0${i_img}.png")`,
+        backgroundSize: '100% 100%',//'cover',//'contain',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
+        backgroundColor: 'transparent',
+        width: "55vh",
+        height: "100vh",
+        margin: 0,
+        padding: 0
+      },
+    }}>
+      <DialogTitle>
+        <IconButton aria-label="close" id="btn_close" onClick={() => handleClose()}>
+          <CloseIcon />
+        </IconButton>
+      </DialogTitle>
+      <form onSubmit={addBott}>
+        <div style={{textAlignLast: 'center'}}>
+          <div style={{marginBottom: 10}}>
+            <span>배경 선택: </span>
+            <Button onClick={() => changeImg(1)} variant="contained" color="primary">1</Button>
+            <Button onClick={() => changeImg(2)} variant="contained" color="primary">2</Button>
+            <Button onClick={() => changeImg(3)} variant="contained" color="primary">3</Button>
+            <Button onClick={() => changeImg(4)} variant="contained" color="primary">4</Button>
+            <Button onClick={() => changeImg(5)} variant="contained" color="primary">5</Button>
+          </div>
+          
+          <DialogContent className="dialog_text">
+            <TextField name="grt_title" value={grt_title} onChange={e => setGrt_title(e.target.value)} 
+              style={{width: "480px"}}
+            />  
+          </DialogContent>
+          <DialogContent>
+            <TextareaAutosize name="grt_contents" value={grt_contents} onChange={e => setGrt_contents(e.target.value)} 
+              style={{width: "480px", height: "590px"}}
+            />
+          </DialogContent>
+        </div>
 
+        {/* footer */}
+        <div style={{position: "absolute", bottom: 0, width: "100%"}}>
+          <div style={{textAlign: 'right', marginRight: 25}}>
+            <TextField name="grt_from" value={grt_from} onChange={e => setGrt_from(e.target.value)}/>
+            <span>로부터</span>
+          </div>
 
-    // 등록화면
-    return (
-      <Styled onClose={handleClose} open={open}
-        PaperProps={{
-          style: {
-            backgroundPosition: 'center',
-            backgroundColor: 'white',
-            width: "55vh",
-            height: "100vh"
-          },
-        }}>
-        <DialogTitle>
-          <IconButton aria-label="close" id="btn_close" onClick={() => handleClose()}>
-          {/* <IconButton aria-label="close" id="btn_close" onClick={() => handleItemClick()}> */}
-            <CloseIcon />
-          </IconButton>
-        </DialogTitle>
-        <form onSubmit={addBott}>
-            <TextField name="grt_from" value={grt_from}  onChange={e => setGrt_from(e.target.value)} />
-            <TextField name="grt_title" value={grt_title}  onChange={e => setGrt_title(e.target.value)} />
-            <TextField name="grt_contents" value={grt_contents} onChange={e => setGrt_contents(e.target.value)} />
-            <div style={{ textAlign: 'right', padding: 8, margin: '24px -24px -24px -24px' }}>
-            <Button type="submit">추가하기</Button>
-            </div>
-        </form>
-      </Styled>
-    );
-  }
+          <div style={{textAlign: 'center'}}>
+            <Button type="submit">덕담 보내기</Button>
+          </div>
+        </div>
+      </form>
+    </Styled>
+  );
+}
 
 export default AddBottari;
 
