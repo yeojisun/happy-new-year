@@ -1,6 +1,7 @@
 import { useLocation, useParams } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
-import { Helmet } from "react-helmet";
+// import { Helmet } from "react-helmet";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 //import Fade from '@mui/material/Fade';
 import { getFirestore, collection, query, orderBy, getDocs, getDoc, doc } from "firebase/firestore";
 
@@ -114,10 +115,12 @@ function List() {
 
     return (
         <>
-            <Helmet>
-                {/* title 정보 */}
-                <meta property="og:title" content={nickName}님의 덕담보따리 />
-            </Helmet>
+            <HelmetProvider>
+                <Helmet>
+                    {/* title 정보 */}
+                    <meta property="og:title" content={nickName}님의 덕담보따리 />
+                </Helmet>
+            </HelmetProvider>
             <Styled>
                 <div className='frame'>
                     <main className='main-frame'>
