@@ -4,7 +4,6 @@ import { Helmet } from "react-helmet";
 //import Fade from '@mui/material/Fade';
 import { getFirestore, collection, query, orderBy, getDocs, getDoc, doc } from "firebase/firestore";
 
-
 import Slider from "react-slick";
 import Styled from "./Styled";
 
@@ -59,19 +58,18 @@ function List() {
             })
         })
         setBotLoading(false);
-
     }
+
     useEffect(() => {
         getNickName();
         fetchBottari();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id]);
     
-    useEffect(() => {
-        //window.location.reload(); 
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [addopen]);
-
+    // useEffect(() => {
+    //     //window.location.reload(); 
+    //     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, [addopen]);
 
     // open dialog
     const handleClickOpen = (pValue, pType, e) => {
@@ -98,6 +96,8 @@ function List() {
         setAddOpen(false);
         console.log("닫았다");
         // setSelectedValue(value);
+
+        window.location.reload();
     };
     const linkCopy = () => {
 
@@ -111,6 +111,7 @@ function List() {
         document.body.removeChild(textarea);
         alert("URL이 복사되었습니다.")
     }
+
     return (
         <>
             <Helmet>
@@ -165,6 +166,7 @@ function List() {
                 open={addopen}
                 user_id={id}
                 onClose={handleAddClose}
+
             />
         </>
     );

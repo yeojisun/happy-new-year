@@ -31,7 +31,7 @@ const AuthCallback = () => {
         window.Kakao.init(REST_API_KEY);
         // access token 설정
         window.Kakao.Auth.setAccessToken(res.data.access_token);
-        history("/"); //Todo: 리스트로 이동시켜야 함?
+        history("/");
       } catch (err) {
         console.log(err);
         alert("error: login access token");
