@@ -1,5 +1,6 @@
 import { useLocation, useParams } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
+import { Helmet } from "react-helmet";
 //import Fade from '@mui/material/Fade';
 import { getFirestore, collection, query, orderBy, getDocs, getDoc, doc } from "firebase/firestore";
 
@@ -29,6 +30,21 @@ function List() {
     const [isBotLoading, setBotLoading] = useState(true);
     const database = getFirestore(firebase); // firestore 접근
     const docRef = doc(database, 'users', id);
+    
+    const slickSettings = {
+        dots: true
+        , infinite: false
+        , speed: 500
+        , slidesPerRow: 3
+        , rows: 3
+        , arrows: false
+    };
+
+    // dialog state
+    const [viewopen, setViewOpen] = React.useState(false);
+    const [addopen, setAddOpen] = React.useState(false);
+    const [selectedValue, setSelectedValue] = React.useState({});
+
     const getNickName = async () => {
 
         const docSnap = await getDoc(docRef);
@@ -47,24 +63,15 @@ function List() {
     }
     useEffect(() => {
         getNickName();
-
         fetchBottari();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id]);
+    
+    useEffect(() => {
+        //window.location.reload(); 
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [addopen]);
 
-    const slickSettings = {
-        dots: true
-        , infinite: false
-        , speed: 500
-        , slidesPerRow: 3
-        , rows: 3
-        , arrows: false
-    };
-
-    // dialog state
-    const [viewopen, setViewOpen] = React.useState(false);
-    const [addopen, setAddOpen] = React.useState(false);
-    const [selectedValue, setSelectedValue] = React.useState({});
 
     // open dialog
     const handleClickOpen = (pValue, pType, e) => {
@@ -89,6 +96,7 @@ function List() {
     };
     const handleAddClose = (value) => {
         setAddOpen(false);
+        console.log("닫았다");
         // setSelectedValue(value);
     };
     const linkCopy = () => {
@@ -105,6 +113,10 @@ function List() {
     }
     return (
         <>
+            <Helmet>
+                {/* title 정보 */}
+                <meta property="og:title" content={nickName}님의 덕담보따리 />
+            </Helmet>
             <Styled>
                 <div className='frame'>
                     <main className='main-frame'>

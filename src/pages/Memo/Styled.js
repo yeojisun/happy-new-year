@@ -8,7 +8,6 @@ const Styled = styled.div`
 }
 .button {
     display: inline-block;
-    color: #fff;
     text-shadow: 0 0 2px rgba(0,0,0,.3);
     font-family: sans-serif;
     box-shadow:
@@ -26,7 +25,8 @@ const Styled = styled.div`
 a:hover {
     cursor:pointer;
    }
-.button.red { background: #EA3D33; }
+   .button.red { background: #EA3D33; color: #fff;}
+   .button.yellow { background: #FFFF00; color: #000;}
 .button:before {
     top: 0;
     border-bottom-left-radius: 4px;
