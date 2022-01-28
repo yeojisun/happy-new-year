@@ -1,9 +1,9 @@
 import { useLocation, useParams } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
-import { Helmet } from "react-helmet";
+// import { Helmet } from "react-helmet";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 //import Fade from '@mui/material/Fade';
 import { getFirestore, collection, query, orderBy, getDocs, getDoc, doc } from "firebase/firestore";
-
 
 import Slider from "react-slick";
 import Styled from "./Styled";
@@ -59,19 +59,18 @@ function List() {
             })
         })
         setBotLoading(false);
-
     }
+
     useEffect(() => {
         getNickName();
         fetchBottari();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id]);
     
-    useEffect(() => {
-        //window.location.reload(); 
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [addopen]);
-
+    // useEffect(() => {
+    //     //window.location.reload(); 
+    //     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, [addopen]);
 
     // open dialog
     const handleClickOpen = (pValue, pType, e) => {
@@ -98,6 +97,8 @@ function List() {
         setAddOpen(false);
         console.log("닫았다");
         // setSelectedValue(value);
+
+        window.location.reload();
     };
     const linkCopy = () => {
 
@@ -111,12 +112,15 @@ function List() {
         document.body.removeChild(textarea);
         alert("URL이 복사되었습니다.")
     }
+
     return (
         <>
-            <Helmet>
-                {/* title 정보 */}
-                <meta property="og:title" content={nickName}님의 덕담보따리 />
-            </Helmet>
+            <HelmetProvider>
+                <Helmet>
+                    {/* title 정보 */}
+                    <meta property="og:title" content={nickName}님의 덕담보따리 />
+                </Helmet>
+            </HelmetProvider>
             <Styled>
                 <div className='frame'>
                     <main className='main-frame'>
@@ -165,6 +169,7 @@ function List() {
                 open={addopen}
                 user_id={id}
                 onClose={handleAddClose}
+
             />
         </>
     );
