@@ -1,11 +1,9 @@
-
 import { DialogTitle, TextField, IconButton, Button } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import React, { useState } from 'react';
 
 import { getFirestore, collection, addDoc, serverTimestamp } from "firebase/firestore";
 import PropTypes from 'prop-types';
-// import InsertForm from "./InsertForm";
 import firebase from '../../firebase';
 
 import Styled from "./ViewStyled";
@@ -15,6 +13,7 @@ function AddBottari(props) {
   const [grt_from, setGrt_from] = useState("")
   const [grt_title, setGrt_title] = useState("")
   const [grt_contents, setGrt_contents] = useState("")
+  
   const handleClose = () => {
     onClose(selectedValue);
   };
@@ -22,9 +21,10 @@ function AddBottari(props) {
   const addBott = (e) =>{
     e.preventDefault();
     
-    console.log("?");
-    const database = getFirestore(firebase);
-    addDoc(collection(database, `users/${user_id}/greetings`), {
+    try {
+      const database = getFirestore(firebase);
+
+      addDoc(collection(database, `users/${user_id}/greetings`), {
                 grt_contents: grt_contents,
                 grt_date: serverTimestamp(),
                 grt_img: "i_02",
@@ -34,19 +34,24 @@ function AddBottari(props) {
               console.log(res);
               alert("등록완료");
               
+              setGrt_title("");
+              setGrt_contents("");
+              setGrt_from("");
+  
+              handleClose(); // modal close
             });
-            setGrt_title("");
-            setGrt_contents("");
-            setGrt_from("");
-            
-  };
+    } catch(e) {
+      alert("error: 등록 실패");
+      console.log(e);
+  }
+};
 
-  const handleItemClick = (value) => {
-    onClose(value);
-  };
+// const handleItemClick = (value) => {
+//   onClose(value);
+// };
 
 
-    // 상세화면
+    // 등록화면
     return (
       <Styled onClose={handleClose} open={open}
         PaperProps={{
@@ -57,8 +62,12 @@ function AddBottari(props) {
             height: "100vh"
           },
         }}>
-        <DialogTitle><IconButton aria-label="close" id="btn_close" onClick={() => handleItemClick()}><CloseIcon />
-      </IconButton></DialogTitle>
+        <DialogTitle>
+          <IconButton aria-label="close" id="btn_close" onClick={() => handleClose()}>
+          {/* <IconButton aria-label="close" id="btn_close" onClick={() => handleItemClick()}> */}
+            <CloseIcon />
+          </IconButton>
+        </DialogTitle>
         <form onSubmit={addBott}>
             <TextField name="grt_from" value={grt_from}  onChange={e => setGrt_from(e.target.value)} />
             <TextField name="grt_title" value={grt_title}  onChange={e => setGrt_title(e.target.value)} />
