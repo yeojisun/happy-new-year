@@ -1,4 +1,4 @@
-import { DialogTitle, DialogContent, TextField, TextareaAutosize, IconButton, Button } from '@mui/material';
+import { DialogTitle, DialogContent, TextField, IconButton, Button, Avatar  } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import React, { useState } from 'react';
 
@@ -17,7 +17,7 @@ function AddBottari(props) {
   const [grt_contents, setGrt_contents] = useState("");
 
   const [i_img, setI_Img] = useState(1);
-  
+
   // 모달 닫기
   const handleClose = () => {
     onClose(selectedValue);
@@ -67,10 +67,10 @@ function AddBottari(props) {
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
         backgroundColor: 'transparent',
-        width: "55vh",
-        height: "100vh",
+        width: "100%",
+        height: "100%",
         margin: 0,
-        padding: 0
+        padding: 0,
       },
     }}>
       <DialogTitle>
@@ -78,41 +78,54 @@ function AddBottari(props) {
           <CloseIcon />
         </IconButton>
       </DialogTitle>
-      <form onSubmit={addBott}>
-        <div style={{textAlignLast: 'center'}}>
-          <div style={{marginBottom: 10}}>
-            <span>배경 선택: </span>
-            <Button onClick={() => changeImg(1)} variant="contained" color="primary">1</Button>
-            <Button onClick={() => changeImg(2)} variant="contained" color="primary">2</Button>
-            <Button onClick={() => changeImg(3)} variant="contained" color="primary">3</Button>
-            <Button onClick={() => changeImg(4)} variant="contained" color="primary">4</Button>
-            <Button onClick={() => changeImg(5)} variant="contained" color="primary">5</Button>
-          </div>
-          
           <DialogContent className="dialog_text">
-            <TextField name="grt_title" value={grt_title} onChange={e => setGrt_title(e.target.value)} 
-              style={{width: "480px"}}
+      <form className="form" onSubmit={addBott}>
+          <div style={{textAlignLast: 'center', minHeight:"10%", marginBottom:"10px"}}>
+            <span>배경 선택: </span>
+            
+            <IconButton onClick={() => changeImg(1)}>
+              <Avatar src={"/assets/img/i_01.png"} />
+            </IconButton>
+            <IconButton onClick={() => changeImg(2)}>
+              <Avatar src={"/assets/img/i_02.png"} />
+            </IconButton>
+            <IconButton onClick={() => changeImg(3)}>
+              <Avatar src={"/assets/img/i_03.png"} />
+            </IconButton>
+            <IconButton onClick={() => changeImg(4)}>
+              <Avatar src={"/assets/img/i_04.png"} />
+            </IconButton>
+            <IconButton onClick={() => changeImg(5)}>
+              <Avatar src={"/assets/img/i_05.png"} />
+            </IconButton>
+            {/* <Button onClick={() => changeImg(1)} size="small">민들레</Button>
+            <Button onClick={() => changeImg(2)} size="small">코스모스</Button>
+            <Button onClick={() => changeImg(3)} size="small">국화</Button>
+            <Button onClick={() => changeImg(4)} size="small">여러꽃</Button>
+            <Button onClick={() => changeImg(5)} size="small">무궁화</Button> */}
+          </div>
+            <TextField name="grt_title" value={grt_title} onChange={e => setGrt_title(e.target.value)} placeholder='제목을 입력해주세요!'
+              style={{width: "100%", minHeight: "10%", marginBottom:"10px"}} InputProps={{ style: { fontSize: 13 } }}
+              InputLabelProps={{ style: { fontSize: 13 } }}
             />  
-          </DialogContent>
-          <DialogContent>
-            <TextareaAutosize name="grt_contents" value={grt_contents} onChange={e => setGrt_contents(e.target.value)} 
-              style={{width: "480px", height: "590px"}}
-            />
-          </DialogContent>
-        </div>
-
+            <TextField name="grt_contents" value={grt_contents} onChange={e => setGrt_contents(e.target.value)} multiline rows={15} placeholder='내용을 입력해주세요!'
+              style={{width: "100%", minHeight: "50%", marginBottom:"10px"}} InputProps={{ style: { fontSize: 13 } }}
+              InputLabelProps={{ style: { fontSize: 13 } }}
+            />  
+            {/* <TextareaAutosize name="grt_contents" value={grt_contents} onChange={e => setGrt_contents(e.target.value)}  placeholder='내용을 입력해주세요!'
+              style={{width: "100%", minHeight: "50%", fontSize:"10px"}}
+            /> */}
         {/* footer */}
-        <div style={{position: "absolute", bottom: 0, width: "100%"}}>
-          <div style={{textAlign: 'right', marginRight: 25}}>
-            <TextField name="grt_from" value={grt_from} onChange={e => setGrt_from(e.target.value)}/>
+          <div style={{textAlign: 'right', minHeight: "10%", marginBottom:"10px"}}>
+            <TextField required variant="standard" name="grt_from" value={grt_from} onChange={e => setGrt_from(e.target.value)} style={{width: "50%"}}/>
             <span>로부터</span>
           </div>
 
-          <div style={{textAlign: 'center'}}>
-            <Button type="submit">덕담 보내기</Button>
+          <div style={{textAlign: 'center', minHeight: "10%"}}>
+            <Button className='button brown'  type="submit">덕담 보내기</Button>
           </div>
-        </div>
       </form>
+          </DialogContent>
     </Styled>
   );
 }
