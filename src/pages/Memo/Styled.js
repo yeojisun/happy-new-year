@@ -4,6 +4,8 @@ const Styled = styled.div`
 .div_button{
     position: relative;
     padding: 40px;
+}
+.div_center{
     text-align: center;
 }
 .button {

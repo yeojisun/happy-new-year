@@ -30,7 +30,7 @@ function List() {
     const [isBotLoading, setBotLoading] = useState(true);
     const database = getFirestore(firebase); // firestore 접근
     const docRef = doc(database, 'users', id);
-    
+
     const slickSettings = {
         dots: true
         , infinite: false
@@ -66,7 +66,7 @@ function List() {
         fetchBottari();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id]);
-    
+
     // useEffect(() => {
     //     //window.location.reload(); 
     //     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -118,7 +118,7 @@ function List() {
             <HelmetProvider>
                 <Helmet>
                     {/* title 정보 */}
-                    <meta property="og:title" content={nickName}님의 덕담보따리 />
+                    <meta property="og:title" content={nickName} 님의 덕담보따리 />
                 </Helmet>
             </HelmetProvider>
             <Styled>
@@ -149,10 +149,14 @@ function List() {
                                 })
                             }
                         </Slider>
-                        <div className='div_button'>
+                        <div className='div_center div_button'>
                             {chkLogin ?
                                 <div className='button yellow' onClick={() => { linkCopy() }}>링크 공유하기</div>
                                 : <div className='button red' onClick={() => { handleClickOpen(null, "NEW") }}>덕담 남기기</div>}
+                        </div>
+
+                        <div className='div_center'>
+                            <a href="https://yeossi.notion.site/happy-summer-95e3afc6e9e54d7ba5fc7b9682cac07c" target="_blank" rel="noreferrer" >누가 맨들었나 보고 싶지 않냐잉</a>
                         </div>
                         <Progress isFade={isBotLoading || isNickLoading} />
 
