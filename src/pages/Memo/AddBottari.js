@@ -80,7 +80,7 @@ function AddBottari(props) {
       </DialogTitle>
           <DialogContent className="dialog_text">
       <form className="form" onSubmit={addBott}>
-          <div style={{textAlignLast: 'center', minHeight:"10%", marginBottom:"10px"}}>
+          <div style={{textAlignLast: 'center', minHeight:"10%"}}>
             <span>배경 선택: </span>
             
             <IconButton onClick={() => changeImg(1)}>
@@ -105,7 +105,7 @@ function AddBottari(props) {
             <Button onClick={() => changeImg(5)} size="small">무궁화</Button> */}
           </div>
             <TextField name="grt_title" value={grt_title} onChange={e => setGrt_title(e.target.value)} placeholder='제목을 입력해주세요!'
-              style={{width: "100%", minHeight: "10%", marginBottom:"10px"}} InputProps={{ style: { fontSize: 13 } }}
+              style={{width: "100%", minHeight: "10%"}} InputProps={{ style: { fontSize: 13 } }}
               InputLabelProps={{ style: { fontSize: 13 } }}
             />  
             <TextField name="grt_contents" value={grt_contents} onChange={e => setGrt_contents(e.target.value)} multiline rows={15} placeholder='내용을 입력해주세요!'
@@ -116,8 +116,10 @@ function AddBottari(props) {
               style={{width: "100%", minHeight: "50%", fontSize:"10px"}}
             /> */}
         {/* footer */}
-          <div style={{textAlign: 'right', minHeight: "10%", marginBottom:"10px"}}>
-            <TextField required variant="standard" name="grt_from" value={grt_from} onChange={e => setGrt_from(e.target.value)} style={{width: "50%"}}/>
+          <div style={{textAlign: 'right', minHeight: "10%"}}>
+            <TextField required variant="standard" name="grt_from" value={grt_from} onChange={e => setGrt_from(e.target.value)} placeholder='이름을 입력해주세요!'
+            style={{width: "50%"}} InputProps={{ style: { fontSize: 13 } }}
+            InputLabelProps={{ style: { fontSize: 13 } }}/>
             <span>로부터</span>
           </div>
 
