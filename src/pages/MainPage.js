@@ -29,7 +29,7 @@ function MainPage() {
                     <div className="title">2022 <br /> 새해 덕담을 주고받아보아요</div>
                     <Auth />
                     <div>
-                        <a href="https://yeossi.notion.site/happy-summer-95e3afc6e9e54d7ba5fc7b9682cac07c" target="_blank" rel="noreferrer" >누가 맨들었나 보고 싶지 않냐잉</a>
+                        <a href="https://yeossi.notion.site/happy-summer-95e3afc6e9e54d7ba5fc7b9682cac07c" target="_blank" rel="noreferrer" >※누가 맨들었나 보고 싶지 않냐잉※</a>
                     </div>
                 </main>
             </div>
