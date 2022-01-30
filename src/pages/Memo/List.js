@@ -143,7 +143,7 @@ function List() {
                                                 console.log('클릭않되요');
                                         }}>
                                             <img src="/assets/img/bottari.png" style={{ width: 80, height: 100 }} alt="" />
-                                            <p className="bottari-text">§{c.grt_from}로부터§</p>
+                                            <p className="bottari-text">§{c.grt_from}님§</p>
                                         </div>
                                     )
                                 })
