@@ -1,70 +1,23 @@
-# Getting Started with Create React App
+# HAPPY~SUMMER!!
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+안녕하세요! 저희는 팀 행복한 여름 입니다. 😊 
 
-## Available Scripts
+각 팀원의 이름 중 한 자씩 따서 팀명을 짓게 되었습니다!
 
-In the project directory, you can run:
+팀원들은 아래와 같이 구성되어있습니다.
 
-### `npm start`
+https://yeossi.notion.site/happy-summer-95e3afc6e9e54d7ba5fc7b9682cac07c
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# 행복한 여름의 첫 토이 프로젝트
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+happy-new-year는 저희 팀의 첫 프로젝트입니다.
 
-### `npm test`
+이번에 크게 이슈가 되었던 산타파이브분들의 <내 트리를 꾸며줘!🌲> 라는 재미난 프로젝트를 보고 영감을 얻어 제작하게 되었답니다!
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+저희는 큰 명절인 설에 덕담을 주고 받는 사이트를 만들어 보기로 했습니다. 
 
-### `npm run build`
+# 여기서 끝나지 않아!
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+첫 프로젝트인만큼 개발자 둘이서 퍼블리싱도 처음(...^^)인지라 부족한 부분도 많지만, 이후에도 이 프로젝트를 방치하지 않고 계속해서 보완해 나갈 예정이랍니다.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+또한 다른 프로젝트도 진행할 계획이 있으니 앞으로도 많이 지켜봐주세요!🥰🥰🥰
